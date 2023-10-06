@@ -76,7 +76,8 @@ export default function Index() {
                                         saving all of my information, and it gives me insight into which links are most
                                         popular and have the most clicks.
                                     </p>
-                                    <p className={'mt-4 xl:mt-6 text-gray-600 text-sm font-normal'}>Abba Sali – Software Developer</p>
+                                    <p className={'mt-4 xl:mt-6 text-gray-600 text-sm font-normal'}>Abba Sali – Software
+                                        Developer</p>
                                 </blockquote>
                             </div>
                         </div>
@@ -101,6 +102,23 @@ export default function Index() {
                                     className={'bg-gray-100 border rounded-full px-6 py-2 text-gray-700 font-semibold text-base border-violet-200'}>
                                     Sign in
                                 </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className={'pt-10 xl:pt-28'}>
+                    <div className="container mx-auto border-t border-b py-8">
+                        <div className="flex flex-col xl:flex-row xl:justify-between xl:items-center items-center">
+                            <div>
+                                <h4 className={"text-sm font-semibold text-center xl:text-start"}>Subscribe to our newsletter</h4>
+                                <p className={"text-sm font-medium text-gray-600 pt-2 text-center xl:text-start"}>The latest news, articles, and
+                                    resources, sent to your inbox weekly.</p>
+                            </div>
+                            <div className={"flex flex-col xl:flex-row space-y-2 xl:space-y-0 xl:space-x-2 items-center"}>
+                                <TextField.Root>
+                                    <TextField.Input placeholder="Your email"/>
+                                </TextField.Root>
+                                <div className={'bg-violet-700 rounded-md text-center text-white px-4 py-1'}>Join in!</div>
                             </div>
                         </div>
                     </div>
