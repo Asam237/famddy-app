@@ -1,0 +1,9 @@
+version: "3"
+services:
+  frontend:
+    container_name: frontend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3020:3020"

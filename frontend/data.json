@@ -1,0 +1,82 @@
+[
+  {
+    "name": "Asam237",
+    "linkedin_handle": "abba-sali-aboubakar-mamate/",
+    "github_handle": "asam237",
+    "gitlab_handle": "asam237",
+    "city": "Maroua",
+    "developer_type": [
+      "Frontend Developer",
+      "Backend Developer"
+    ]
+  },
+  {
+    "name": "Mystro Ken",
+    "linkedin_handle": "emmanuel-kwene/",
+    "github_handle": "mystroken",
+    "gitlab_handle": "mystroken",
+    "city": "Yaoundé",
+    "developer_type": [
+      "Full stack Developer",
+      "DevOps Developer"
+    ]
+  },
+  {
+    "name": "Abba Sali",
+    "linkedin_handle": "abba-sali-aboubakar-mamate/",
+    "github_handle": "asam237",
+    "gitlab_handle": "asam237",
+    "city": "Maroua",
+    "developer_type": [
+      "Frontend Developer",
+      "Backend Developer"
+    ]
+  },
+  {
+    "name": "Faouzi El Mansour",
+    "linkedin_handle": "faouziel-mansour-982468113/",
+    "github_handle": "elmansour1",
+    "gitlab_handle": "elmansour1",
+    "city": "Douala",
+    "developer_type": [
+      "Full stack Developer",
+      "DevOps Developer"
+    ]
+  },
+  {
+    "name": "Adonis SIMO",
+    "linkedin_handle": "adonis-simo/",
+    "github_handle": "simo97",
+    "gitlab_handle": "simoadonis",
+    "city": "Douala",
+    "developer_type": [
+      "Full stack Developer",
+      "DevOps Developer",
+      "Web Developer"
+    ]
+  },
+  {
+    "name": "ABDOUL HAMID MOUAHAMAD",
+    "linkedin_handle": "abdoul-hamid-mouahamad-06025b294/",
+    "github_handle": "Hamiltongangwadjo",
+    "gitlab_handle": "hamiltonwadjo",
+    "city": "Maroua",
+    "developer_type": [
+      "Mobile Developer",
+      "Web Developer",
+      "Developer"
+    ]
+  },
+  {
+    "name": "Mouhamed Bakhoum",
+    "linkedin_handle": "mouhamed-bakhoum",
+    "github_handle": "Mouhamed-B",
+    "gitlab_handle": "Mouhamed-B",
+    "city": "None",
+    "developer_type": [
+      "Frontend Developer",
+      "Backend Developer",
+      "Mobile Developer"
+    ]
+  }
+]
