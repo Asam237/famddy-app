@@ -35,12 +35,13 @@ const Header = () => {
                                 );
                             })}
                         </ul>
-                        <button
+                        <Link
+                            href={"/signin"}
                             className={'bg-violet-100 border-2 rounded-full px-4 py-1 text-violet-700 font-semibold text-sm'}>
                             Sign in
-                        </button>
+                        </Link>
                     </div>
-                    <FaBars size={26} className={'text-gray-700 flex xl:hidden'} />
+                    <FaBars size={26} className={'text-gray-700 flex xl:hidden'}/>
                 </div>
             </div>
         </header>
