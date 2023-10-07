@@ -1,10 +1,34 @@
 import AppLayout from "./layout/app";
-import {FaArrowRight, FaLink} from "react-icons/fa";
+import {FaArrowRight, FaChrome, FaCopy, FaLink, FaSave, FaShare} from "react-icons/fa";
 import {TextField} from "@radix-ui/themes";
 import Image from "next/image";
 import {UrlPic} from "../utils/images";
+import {useState} from "react";
+import {api} from "../hooks/useAxios";
+import {toast, ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Index() {
+    const [shortener, setShortener] = useState("");
+    const [printValue, setPrintValue] = useState("");
+    const [copyText, setCopyText] = useState("copy");
+
+    const handlerShortener = async (e: any) => {
+        e.preventDefault();
+        const res = await api.post("/shortener", {longUrl: shortener}).then((res) => {
+            setPrintValue(res.data?.shortener?.shortUrl);
+        })
+    }
+
+    const copyToClipboard = () => {
+        const copyText: any = window.document.getElementById("myInput");
+        copyText?.select();
+        copyText?.setSelectionRange(0, 99999); // For mobile devices
+        navigator.clipboard.writeText(copyText?.value);
+        toast.success("Copy to clipboard");
+        setCopyText("copied");
+    };
+
     return (
         <AppLayout>
             <main className={"py-10 xl:py-20 bg-gradient-to-r from-gray-50 to-violet-5 px-4 xl:px-0"}>
@@ -22,18 +46,46 @@ export default function Index() {
                         <p className={'text-center py-2 text-base text-gray-700'}>Famddy is a free URL shortening tool.
                             Create short and memorable links in seconds.</p>
                     </div>
-                    <div
-                        className={'pt-7 max-w-3xl mx-auto w-full flex space-y-4 xl:space-y-0 xl:space-x-4 flex-col xl:flex-row justify-center items-center'}>
+                    <form
+                        className={'pt-7 max-w-3xl mx-auto w-full flex space-y-4 xl:space-y-0 xl:space-x-4 flex-col xl:flex-row justify-center items-center'}
+                        onSubmit={handlerShortener}>
                         <TextField.Root size="3" className={'w-full xl:w-3/4'}>
                             <TextField.Slot>
                                 <FaLink/>
                             </TextField.Slot>
-                            <TextField.Input placeholder="Enter link here..."/>
+                            <TextField.Input onChange={(e) => setShortener(e.target.value)}
+                                             placeholder="Enter link here..."/>
                         </TextField.Root>
-                        <div className={'bg-violet-700 rounded-md text-center text-white px-4 py-2'}>Shorten
+                        <button type="submit"
+                                className={'bg-violet-700 rounded-md text-center text-white px-4 py-2'}>Shorten
                             URL
+                        </button>
+                    </form>
+                    {printValue.length > 5 &&
+                        <div className={'container mx-auto xl:max-w-4xl'}>
+                            <div
+                                className={"flex justify-center items-center px-4 py-6 my-4 rounded-md xl:my-8 bg-violet-100 flex-col"}>
+                                <input
+                                    className={`text-gray-700 text-sm font-semibold flex items-center`}
+                                    id="myInput"
+                                    value={printValue}
+                                    placeholder={printValue}
+                                    disabled
+                                />
+                                <div className={'mt-4 flex flex-row justify-center items-center space-x-5'}>
+                                    <FaCopy onClick={copyToClipboard}
+                                            size={24}
+                                            className={'cursor-pointer text-gray-700 hover:text-violet-700'}/>
+                                    <FaChrome size={24}
+                                              className={'cursor-pointer text-gray-700 hover:text-violet-700'}/>
+                                    <FaShare size={24}
+                                             className={'cursor-pointer text-gray-700 hover:text-violet-700'}/>
+                                    <FaSave size={24}
+                                            className={'cursor-pointer text-gray-700 hover:text-violet-700'}/>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    }
                     <p className={'text-center pt-6 text-sm text-gray-700'}>By clicking Shorten URL, you agree to
                         Famddy&apos;s Terms of Use, Privacy Policy and Cookie Policy</p>
                 </div>
@@ -110,20 +162,25 @@ export default function Index() {
                     <div className="container mx-auto border-t border-b py-8">
                         <div className="flex flex-col xl:flex-row xl:justify-between xl:items-center items-center">
                             <div>
-                                <h4 className={"text-sm font-semibold text-center xl:text-start"}>Subscribe to our newsletter</h4>
-                                <p className={"text-sm font-medium text-gray-600 pt-2 text-center xl:text-start"}>The latest news, articles, and
+                                <h4 className={"text-sm font-semibold text-center xl:text-start"}>Subscribe to our
+                                    newsletter</h4>
+                                <p className={"text-sm font-medium text-gray-600 pt-2 text-center xl:text-start"}>The
+                                    latest news, articles, and
                                     resources, sent to your inbox weekly.</p>
                             </div>
-                            <div className={"flex flex-col xl:flex-row space-y-2 xl:space-y-0 xl:space-x-2 items-center"}>
+                            <div
+                                className={"flex flex-col xl:flex-row space-y-2 xl:space-y-0 xl:space-x-2 items-center"}>
                                 <TextField.Root>
                                     <TextField.Input placeholder="Your email"/>
                                 </TextField.Root>
-                                <div className={'bg-violet-700 rounded-md text-center text-white px-4 py-1'}>Join in!</div>
+                                <div className={'bg-violet-700 rounded-md text-center text-white px-4 py-1'}>Join in!
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </main>
+            <ToastContainer/>
         </AppLayout>
     );
 }
