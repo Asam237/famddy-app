@@ -17,13 +17,16 @@ const mongoose = require('mongoose');
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({extended: false}));
 
 const {MONGODB_URL} = require('./src/config/consts');
+const shortenerRouter = require("./src/routes/shorteners");
 mongoose.connect(MONGODB_URL).then(function () {
-    const userRouter = require("./src/routes/users");
+    const usersRouter = require("./src/routes/users");
+    const shortenerRouter = require("./src/routes/shorteners");
     console.log("connected to database");
-    app.use("/", userRouter);
+    app.use("/users", usersRouter);
+    app.use("/shortener", shortenerRouter);
     app.use('/swagger', swaggerUi.serve, swaggerUi.setup(specs));
 });
 
