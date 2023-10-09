@@ -1,5 +1,5 @@
 import AppLayout from "./layout/app";
-import {FaArrowRight, FaChrome, FaCopy, FaLink, FaSave, FaShare} from "react-icons/fa";
+import {FaArrowRight, FaChrome, FaCopy, FaLink, FaSave} from "react-icons/fa";
 import {TextField} from "@radix-ui/themes";
 import Image from "next/image";
 import {UrlPic} from "../utils/images";
@@ -7,6 +7,8 @@ import {useState} from "react";
 import {api} from "../hooks/useAxios";
 import {toast, ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Link from "next/link";
+import {cleanText} from "../utils/helpers";
 
 export default function Index() {
     const [shortener, setShortener] = useState("");
@@ -15,7 +17,7 @@ export default function Index() {
 
     const handlerShortener = async (e: any) => {
         e.preventDefault();
-        const res = await api.post("/shortener", {longUrl: shortener}).then((res) => {
+        await api.post("/shortener", {longUrl: shortener}).then((res) => {
             setPrintValue(res.data?.shortener?.shortUrl);
         })
     }
@@ -68,7 +70,7 @@ export default function Index() {
                                 <input
                                     className={`text-gray-700 text-sm font-semibold flex items-center`}
                                     id="myInput"
-                                    value={printValue}
+                                    value={cleanText(printValue, 26)}
                                     placeholder={printValue}
                                     disabled
                                 />
@@ -76,12 +78,14 @@ export default function Index() {
                                     <FaCopy onClick={copyToClipboard}
                                             size={24}
                                             className={'cursor-pointer text-gray-700 hover:text-violet-700'}/>
-                                    <FaChrome size={24}
-                                              className={'cursor-pointer text-gray-700 hover:text-violet-700'}/>
-                                    <FaShare size={24}
-                                             className={'cursor-pointer text-gray-700 hover:text-violet-700'}/>
-                                    <FaSave size={24}
-                                            className={'cursor-pointer text-gray-700 hover:text-violet-700'}/>
+                                    <Link href={printValue}>
+                                        <FaChrome size={24}
+                                                  className={'cursor-pointer text-gray-700 hover:text-violet-700'}/>
+                                    </Link>
+                                    <Link href={"/signin"}>
+                                        <FaSave size={24}
+                                                className={'cursor-pointer text-gray-700 hover:text-violet-700'}/>
+                                    </Link>
                                 </div>
                             </div>
                         </div>

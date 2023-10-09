@@ -25,10 +25,10 @@ const Signin = () => {
     }
 
     const handleRegister: SubmitHandler<CreateUserInput> = (data: CreateUserInput) => {
-        if (createUser.isSuccess) {
-            router.push("/signin")
-        }
         createUser.mutate({...data});
+        if (createUser.isSuccess) {
+            router.push("/signin");
+        }
     }
 
     return (
