@@ -3,45 +3,29 @@ import {FaArrowRight, FaChrome, FaCopy, FaLink, FaSave} from "react-icons/fa";
 import {TextField} from "@radix-ui/themes";
 import Image from "next/image";
 import {UrlPic} from "../utils/images";
-import {useState} from "react";
-import {api} from "../hooks/useAxios";
-import {toast, ToastContainer} from "react-toastify";
+import {ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
 import {cleanText} from "../utils/helpers";
+import {useShortener} from "../hooks/requests/mutations/useShortener";
+import {SubmitHandler, useForm} from "react-hook-form";
+import {ShortenerInput} from "../typings";
+
 
 export default function Index() {
-    const [shortener, setShortener] = useState("");
-    const [printValue, setPrintValue] = useState("");
-    const [copyText, setCopyText] = useState("copy");
 
-    const handlerShortener = async (e: any) => {
-        e.preventDefault();
-        await api.post("/shortener", {longUrl: shortener}).then((res) => {
-            setPrintValue(res.data?.shortener?.shortUrl);
-        })
+    const {data, mutate: createShortener} = useShortener();
+    // const copyToClipboard = useCopy("myInput");
+    const {handleSubmit, formState: {errors}, register} = useForm<ShortenerInput>();
+
+    const handlerShortener: SubmitHandler<ShortenerInput> = (data: ShortenerInput) => {
+        createShortener({...data});
     }
-
-    const copyToClipboard = () => {
-        const copyText: any = window.document.getElementById("myInput");
-        copyText?.select();
-        copyText?.setSelectionRange(0, 99999); // For mobile devices
-        navigator.clipboard.writeText(copyText?.value);
-        toast.success("Copy to clipboard");
-        setCopyText("copied");
-    };
 
     return (
         <AppLayout>
-            <main className={"py-10 xl:py-20 bg-gradient-to-r from-gray-50 to-violet-5 px-4 xl:px-0"}>
-                <div className={'flex justify-center items-center'}>
-                    <p className={'text-gray-700 bg-violet-100 text-sm border-2 px-6 py-1 flex items-center justify-center rounded-full border-violet-200 text-center'}>
-                        Support
-                        Famddy today by sponsoring
-                        <FaArrowRight className={'mx-2 text-violet-900'} size={11}/>
-                    </p>
-                </div>
-                <div className={'pt-10 xl:pt-20'}>
+            <main className={"py-10 xl:py-20 px-4 xl:px-0"}>
+                <div className={'pt-10'}>
                     <div className="container mx-auto">
                         <h2 className={'text-center text-3xl xl:text-4xl font-bold text-gray-700'}>A free tool to
                             shorten URLs</h2>
@@ -50,12 +34,12 @@ export default function Index() {
                     </div>
                     <form
                         className={'pt-7 max-w-3xl mx-auto w-full flex space-y-4 xl:space-y-0 xl:space-x-4 flex-col xl:flex-row justify-center items-center'}
-                        onSubmit={handlerShortener}>
+                        onSubmit={handleSubmit(handlerShortener)}>
                         <TextField.Root size="3" className={'w-full xl:w-3/4'}>
                             <TextField.Slot>
                                 <FaLink/>
                             </TextField.Slot>
-                            <TextField.Input onChange={(e) => setShortener(e.target.value)}
+                            <TextField.Input {...register("longUrl")}
                                              placeholder="Enter link here..."/>
                         </TextField.Root>
                         <button type="submit"
@@ -63,22 +47,22 @@ export default function Index() {
                             URL
                         </button>
                     </form>
-                    {printValue.length > 5 &&
+                    {data?.shortener?.shortUrl.length > 5 &&
                         <div className={'container mx-auto xl:max-w-4xl'}>
                             <div
                                 className={"flex justify-center items-center px-4 py-6 my-4 rounded-md xl:my-8 bg-violet-100 flex-col"}>
                                 <input
                                     className={`text-gray-700 text-sm font-semibold flex items-center`}
                                     id="myInput"
-                                    value={cleanText(printValue, 26)}
-                                    placeholder={printValue}
+                                    value={cleanText(data?.shortener?.shortUrl, 26)}
+                                    placeholder={data?.shortener?.shortUrl}
                                     disabled
                                 />
                                 <div className={'mt-4 flex flex-row justify-center items-center space-x-5'}>
-                                    <FaCopy onClick={copyToClipboard}
-                                            size={24}
-                                            className={'cursor-pointer text-gray-700 hover:text-violet-700'}/>
-                                    <Link href={printValue}>
+                                    <FaCopy
+                                        size={24}
+                                        className={'cursor-pointer text-gray-700 hover:text-violet-700'}/>
+                                    <Link href={data?.shortener?.shortUrl}>
                                         <FaChrome size={24}
                                                   className={'cursor-pointer text-gray-700 hover:text-violet-700'}/>
                                     </Link>

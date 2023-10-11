@@ -1,14 +1,13 @@
 import DashboardLayout from "../layout/dashboard";
-import {Box, Card, Flex, TextField} from "@radix-ui/themes";
+import {Flex, TextField} from "@radix-ui/themes";
 import {FaSearch} from "react-icons/fa";
-import {useShortener} from "../../hooks/requests/queries/useShortener";
 import {ShortenerInput} from "../../typings";
-import {cleanText} from "../../utils/helpers";
+import CardPreview from "../../components/CardPreview";
+import {useFindShortener} from "../../hooks/requests/queries/useShortener";
 
 const Dashboard = () => {
 
-    const {data} = useShortener();
-
+    const {data, isLoading} = useFindShortener();
 
     return (
         <DashboardLayout>
@@ -31,35 +30,15 @@ const Dashboard = () => {
                             </TextField.Root>
                         </Flex>
                     </div>
-
-
                     <div
                         className={
                             "my-10 grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
                         }
                     >
-                        {/*<img*/}
-                        {/*    className="h-full w-full object-cover"*/}
-                        {/*    src={preview?.image}*/}
-                        {/*    alt={preview?.title}*/}
-                        {/*/>*/}
                         {
-                            data?.shorteners?.map((item: ShortenerInput, index: number) => {
-                                return (<Card key={index} className={"h-64 bg-red-400 shadow-xl"}>
-                                        <Flex ml="3" gap="3" align="center" className={'h-2/3'}>
-                                            <Box className={'h-1/2'}>
-                                                {/*<img*/}
-                                                {/*    className="h-full w-full object-cover"*/}
-                                                {/*    src={preview?.image}*/}
-                                                {/*    alt={preview?.title}*/}
-                                                {/*/>*/}
-                                            </Box>
-                                        </Flex>
-                                        <Box p={"3"} className={'h-1/3'}>
-                                            <hr className={'my-4'}/>
-                                            <p className={'text-xs'}>{cleanText(item.longUrl, 100)}</p>
-                                        </Box>
-                                    </Card>
+                            data?.shorteners?.map((item: ShortenerInput) => {
+                                return (
+                                    <CardPreview key={item.longUrl} longUrl={item.longUrl}/>
                                 )
                             })
                         }

@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 @font-face {
-    src: url("../assets/fonts/Rubik-Light.ttf");
-    font-family: 'RubikMedium';
+    src: url("../assets/fonts/arial.ttf");
+    font-family: 'Arial';
 }
 
 @font-face {

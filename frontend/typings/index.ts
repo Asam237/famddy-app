@@ -10,5 +10,6 @@ export type LoginUserInput = {
 }
 
 export type ShortenerInput = {
-    longUrl: string
+    url: string
 }
+

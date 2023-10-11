@@ -3,7 +3,7 @@ import axios from "axios";
 const baseURL = "http://localhost:3010";
 
 export const api = axios.create({
-    baseURL
+    baseURL,
 });
 
 export const loginUser = async (data: any) => {

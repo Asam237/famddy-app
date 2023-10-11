@@ -1,11 +1,15 @@
 import {useQuery} from "@tanstack/react-query";
-import {findShortenerLink} from "../../useAxios";
+import {api} from "../../useAxios";
 
-export const useShortener = () => {
+const shortener = async () => {
+    return await api.get("/shorteners");
+}
+
+export const useFindShortener = () => {
     return useQuery({
         queryKey: ["findShortener"],
         queryFn: async () => {
-            const res = await findShortenerLink();
+            const res = await shortener();
             return res.data;
         }
     });
