@@ -26,7 +26,7 @@ mongoose.connect(MONGODB_URL).then(function () {
     const shortenerRouter = require("./src/routes/shorteners");
     console.log("connected to database");
     app.use("/users", usersRouter);
-    app.use("/shortener", shortenerRouter);
+    app.use("/shorteners", shortenerRouter);
     app.use('/swagger', swaggerUi.serve, swaggerUi.setup(specs));
 });
 

@@ -8,6 +8,7 @@ const Shortener = mongoose.model(
         ...Model.base,
         longUrl: {type: String},
         shortUrl: {type: String},
+        user: {type: mongoose.Schema.Types.ObjectId, ref: "user"},
     }, {
         statics: {
             register(input) {
