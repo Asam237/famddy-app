@@ -2,13 +2,14 @@ import {useQuery} from "@tanstack/react-query";
 import axios from "axios";
 
 const fetchLinkPreview = async (url: string) => {
-    let res = await axios.get(`/api/link-preview?url=${url}`);
+    let fullUrl = "/api/link-preview?url=" + url;
+    let res = await axios.get(fullUrl);
     return res.data;
 };
 
 export const useFetchPreview = (url: string) => {
     return useQuery({
-        queryKey: ["previewData"],
+        queryKey: ["previews"],
         queryFn: () => {
             return fetchLinkPreview(url);
         }

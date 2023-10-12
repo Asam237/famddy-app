@@ -13,3 +13,8 @@ export type ShortenerInput = {
     url: string
 }
 
+export type ShortenerUserInput = {
+    longUrl: string
+    user: string
+}
+

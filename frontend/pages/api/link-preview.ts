@@ -1,11 +1,11 @@
 import axios from "axios"
-import {load} from "cheerio"
+import {CheerioAPI, load} from "cheerio"
 
-export default async function handler(req: any, res: any) {
+export default async function handler(req: any, res: any): Promise<void> {
     try {
         const {url} = req.query
         const {data} = await axios.get(url)
-        const $ = load(data)
+        const $: CheerioAPI = load(data)
 
         const getMetaTag = (name: any) => {
             return (
@@ -25,7 +25,6 @@ export default async function handler(req: any, res: any) {
             image: getMetaTag("image"),
             author: getMetaTag("author"),
         }
-
         res.status(200).json(preview)
     } catch (error) {
         res

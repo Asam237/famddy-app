@@ -1,9 +1,7 @@
 import DashboardLayout from "../layout/dashboard";
-import {Flex, TextField} from "@radix-ui/themes";
-import {FaSearch} from "react-icons/fa";
-import {ShortenerInput} from "../../typings";
 import CardPreview from "../../components/CardPreview";
 import {useFindShortener} from "../../hooks/requests/queries/useShortener";
+import DialogComponent from "../../components/Dialog";
 
 const Dashboard = () => {
 
@@ -21,14 +19,9 @@ const Dashboard = () => {
                         <h4 className={"text-center text-3xl font-semibold"}>
                             Tous les <span className={"bg-violet-700 text-white px-2 py-1"}>liens</span> sauvegardes.
                         </h4>
-                        <Flex direction="column" gap="3" style={{maxWidth: 400}}>
-                            <TextField.Root size="3">
-                                <TextField.Slot>
-                                    <FaSearch size={16} color="gray"/>
-                                </TextField.Slot>
-                                <TextField.Input placeholder="Rechercher un profile ..."/>
-                            </TextField.Root>
-                        </Flex>
+                        <DialogComponent title={"Ajouter un lien"}
+                                         label={"Link"}
+                                         description={"Lorem ipsum dolor sit amet, consectetur adipisicing elit."}/>
                     </div>
                     <div
                         className={
@@ -36,9 +29,9 @@ const Dashboard = () => {
                         }
                     >
                         {
-                            data?.shorteners?.map((item: ShortenerInput) => {
+                            data?.shorteners?.map((item: any) => {
                                 return (
-                                    <CardPreview key={item.longUrl} longUrl={item.longUrl}/>
+                                    <CardPreview key={item._id} longUrl={item.longUrl}/>
                                 )
                             })
                         }

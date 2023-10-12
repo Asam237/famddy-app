@@ -39,7 +39,7 @@ export default function Index() {
                             <TextField.Slot>
                                 <FaLink/>
                             </TextField.Slot>
-                            <TextField.Input {...register("longUrl")}
+                            <TextField.Input {...register("url")}
                                              placeholder="Enter link here..."/>
                         </TextField.Root>
                         <button type="submit"
