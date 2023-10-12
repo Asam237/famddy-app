@@ -36,7 +36,7 @@ router.post("/login", async (req, res) => {
     }, (err) => Consts.errorFallback(err, res));
 }, (err) => Consts.errorFallback(err, res));
 
-router.get("/:me", Security.authentication, (req, res) => {
+router.get("/:me", (req, res) => {
     const me = req.params.me;
     User.findOne({_id: me}).then(async (user) => {
         if (user == null)

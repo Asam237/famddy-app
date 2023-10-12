@@ -68,5 +68,4 @@ router.get("/of/:user", (req, res) => {
     }, (err) => Consts.errorFallback(err, res));
 });
 
-
 module.exports = router;
