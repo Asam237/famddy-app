@@ -8,7 +8,9 @@ const HeaderPrimary = () => {
             <div className="container mx-auto py-4">
                 <div className="flex justify-between items-center">
                     <div className={'flex items-center'}>
-                        <h4 className={'ml-4 text-2xl font-[900] text-gray-700 font-[Arial]'}>Famddy</h4>
+                        <Link href={"/"}>
+                            <h4 className={'ml-4 text-2xl font-[700] text-gray-700 cursor-pointer hover:underline underline-offset-4'}>Famddy</h4>
+                        </Link>
                     </div>
                     <div className={"hidden xl:flex justify-center items-center space-x-4"}>
                         <ul className={"flex space-x-4"}>

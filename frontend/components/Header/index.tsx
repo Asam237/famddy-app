@@ -4,7 +4,7 @@ import HeaderDashboard from "./dashboard";
 
 const Header = () => {
     const {uid} = useAuth();
-    if (uid == "undefined") {
+    if (!uid) {
         return <HeaderPrimary/>
     }
     return <HeaderDashboard/>

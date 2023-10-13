@@ -1,8 +1,8 @@
-import {FaUser} from "react-icons/fa";
 import {useMe} from "../../hooks/requests/queries/useMe";
 import {useRouter} from "next/router";
 import {useEffect, useState} from "react";
 import Link from "next/link";
+import DropDown from "../DropDown";
 
 const HeaderDashboard = () => {
         const {data} = useMe();
@@ -19,13 +19,12 @@ const HeaderDashboard = () => {
                 <div className="container mx-auto py-4">
                     <div className="flex justify-between items-center">
                         <div className={'flex items-center'}>
-                            <h4 className={'ml-4 text-2xl font-[900] text-gray-700 font-[Arial]'}>Famddy</h4>
+                            <Link href={"/"}>
+                                <h4 className={'ml-4 text-2xl font-[700] text-gray-700 cursor-pointer hover:underline hover:underline-offset-4'}>Famddy</h4>
+                            </Link>
                         </div>
                         <div className={'flex justify-center items-center space-x-4'}>
-                            <div className={'flex justify-center'}>
-                                <FaUser size={20} className={'text-gray-700 mr-2'}/>
-                                <h1 className={'text-gray-700 text-lg font-semibold'}>{data?.user?.full_name}</h1>
-                            </div>
+                            <DropDown name={data?.user?.full_name}/>
                             <div className={`${location === "/" ? 'flex' : 'hidden'}`}>
                                 <Link href={"/dashboard"}>
                                     <button
