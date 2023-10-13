@@ -10,6 +10,7 @@ import {cleanText} from "../utils/helpers";
 import {useShortener} from "../hooks/requests/mutations/useShortener";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {ShortenerInput} from "../typings";
+import {useAuth} from "../hooks/useAuth";
 
 
 export default function Index() {
@@ -17,6 +18,7 @@ export default function Index() {
     const {data, mutate: createShortener} = useShortener();
     // const copyToClipboard = useCopy("myInput");
     const {handleSubmit, formState: {errors}, register} = useForm<ShortenerInput>();
+    const {uid} = useAuth();
 
     const handlerShortener: SubmitHandler<ShortenerInput> = (data: ShortenerInput) => {
         createShortener({...data});
@@ -39,7 +41,7 @@ export default function Index() {
                             <TextField.Slot>
                                 <FaLink/>
                             </TextField.Slot>
-                            <TextField.Input {...register("url")}
+                            <TextField.Input {...register("longUrl")}
                                              placeholder="Enter link here..."/>
                         </TextField.Root>
                         <button type="submit"
@@ -54,7 +56,7 @@ export default function Index() {
                                 <input
                                     className={`text-gray-700 text-sm font-semibold flex items-center`}
                                     id="myInput"
-                                    value={cleanText(data?.shortener?.shortUrl, 26)}
+                                    value={cleanText(data?.shortener?.shortUrl, 24)}
                                     placeholder={data?.shortener?.shortUrl}
                                     disabled
                                 />
@@ -123,7 +125,7 @@ export default function Index() {
                         </div>
                     </div>
                 </div>
-                <div className={'pt-10 xl:pt-28'}>
+                <div className={`pt-10 xl:pt-28 ${uid === "undefined" ? 'flex' : 'hidden'}`}>
                     <div className="container mx-auto">
                         <div className="flex justify-center items-center flex-col">
                             <h4 className={'text-3xl xl:text-4xl font-bold text-gray-700 flex justify-center items-center text-center'}>
@@ -134,14 +136,18 @@ export default function Index() {
                                 Try Famddy out and observe for yourself
                             </p>
                             <div className={'pt-6 grid grid-cols-1 xl:grid-cols-2 gap-y-4 xl:gap-x-6'}>
-                                <button
-                                    className={'bg-violet-700 border-2 rounded-full px-6 py-2 text-white font-semibold text-base'}>
-                                    Get Started for free
-                                </button>
-                                <button
-                                    className={'bg-gray-100 border rounded-full px-6 py-2 text-gray-700 font-semibold text-base border-violet-200'}>
-                                    Sign in
-                                </button>
+                                <Link href={"/create"}>
+                                    <button
+                                        className={'bg-violet-700 border-2 rounded-full px-6 py-2 text-white font-semibold text-base w-full'}>
+                                        Get Started for free
+                                    </button>
+                                </Link>
+                                <Link href={"/signin"}>
+                                    <button
+                                        className={'bg-gray-100 border rounded-full px-6 py-2 text-gray-700 font-semibold text-base border-violet-200 w-full'}>
+                                        Sign in
+                                    </button>
+                                </Link>
                             </div>
                         </div>
                     </div>

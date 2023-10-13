@@ -15,8 +15,7 @@ export const useShortener = () => {
     return useMutation({
         mutationKey: ["shortener"],
         mutationFn: async (input: ShortenerInput) => {
-            const value = await shortener({...input});
-            return value;
+            return await shortener({...input});
         },
         onSuccess: () => {
             queryClient.invalidateQueries(["shortener"])

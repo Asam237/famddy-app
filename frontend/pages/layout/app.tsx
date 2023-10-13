@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Header from "../../components/Header";
+import Header from "../../components/Header/index";
 import {FaFacebook, FaInstagram, FaLinkedin, FaTwitter} from "react-icons/fa";
 import Link from "next/link";
 

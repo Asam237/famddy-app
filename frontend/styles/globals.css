@@ -3,15 +3,11 @@
 @tailwind utilities;
 
 @font-face {
-    src: url("../assets/fonts/arial.ttf");
-    font-family: 'Arial';
+    src: url("../assets/fonts/WorkSans-VariableFont_wght.ttf");
+    font-family: 'WorkSans';
 }
 
-@font-face {
-    src: url("../assets/fonts/Rubik-Regular.ttf");
-    font-family: 'RubikRegular';
-}
 
 * {
-    font-family: 'RubikRegular';
+    font-family: 'WorkSans';
 }

@@ -1,26 +1,23 @@
 import Head from "next/head";
 import {FaMagic} from "react-icons/fa";
 import {Button, Heading, Text, TextField} from '@radix-ui/themes'
-import {useState} from "react";
-import Link from "next/link";
 import {useRouter} from "next/router";
 import {SubmitHandler, useForm} from "react-hook-form";
-import {LoginUserInput} from "../../typings";
-import {useLoginUser} from "../../hooks/requests/mutations/useLoginUser";
+import {CreateUserInput} from "../../typings";
+import {useRegisterUser} from "../../hooks/requests/mutations/useCreateUser";
+import Link from "next/link";
 
 
-const Signin = () => {
+const Create = () => {
 
-    const [signin, setSignin] = useState(true);
     const router = useRouter();
-    const {register, handleSubmit, formState: {errors}} = useForm<LoginUserInput>();
-    const loginUser = useLoginUser();
+    const {register, handleSubmit, formState: {errors}} = useForm<CreateUserInput>();
+    const createUser = useRegisterUser();
 
-
-    const handleLogin: SubmitHandler<LoginUserInput> = (data: LoginUserInput) => {
-        loginUser.mutate({...data});
-        if (loginUser.isSuccess) {
-            router.push("/dashboard");
+    const handleRegister: SubmitHandler<CreateUserInput> = (data: CreateUserInput) => {
+        createUser.mutate({...data});
+        if (createUser.isSuccess) {
+            router.push("/create");
         }
     }
 
@@ -43,34 +40,37 @@ const Signin = () => {
                             </Text>
                         </div>
                     </div>
+
+
                     <div
                         className={'flex flex-col w-full md:w-1/2 h-full justify-center p-4 md:px-12 bg-white'}>
-                        <Heading>Se connecter</Heading>
+                        <Heading>S&apos;inscrire</Heading>
                         <Text size="2" style={{margin: '14px 0'}}>Lorem ipsum dolor sit amet,
                             consectetur adipisicing elit.</Text>
-                        <form onSubmit={handleSubmit(handleLogin)}>
+                        <form onSubmit={handleSubmit(handleRegister)}>
                             <TextField.Root size="3">
+                                <TextField.Input {...register("full_name")} placeholder="Full Name"/>
+                            </TextField.Root>
+                            <TextField.Root size="3" style={{marginTop: '14px'}}>
                                 <TextField.Input {...register("email")} placeholder="Email"/>
                             </TextField.Root>
                             <TextField.Root size="3" style={{marginTop: '14px'}}>
-                                <TextField.Input type={"password"} {...register("password")}
-                                                 placeholder="Mot de passe"/>
+                                <TextField.Input {...register("password")} type={"password"}
+                                                 placeholder="Password"/>
                             </TextField.Root>
                             {
-                                loginUser.isError &&
-                                <p className={"text-center text-sm pt-2 text-red-500 font-semibold"}>Login
-                                    Failed!</p>
+                                createUser.isError &&
+                                <p className={"text-center text-sm pt-2 text-red-500 font-semibold"}>Server
+                                    Error !</p>
                             }
-                            <Button type={"submit"} size="3" className={'bg-violet-700 w-full xl:w-1/4'}
+                            <Button size="3" type="submit" className={'bg-violet-700 w-full xl:w-1/4'}
                                     style={{margin: '14px 0', background: "#6D28D9"}}>
-                                {loginUser.isLoading ? "Loading..." : "Connexion"}
+                                {createUser.isLoading ? "Loading.." : "Sign Up"}
                             </Button>
                         </form>
-                        <Text size="2" style={{margin: '6px 0'}} className={'text-center'}>Vous n&apos;avez
-                            pas de
-                            compte ? <Link href={"/create"}
-                                           className={'font-semibold text-violet-700 cursor-pointer'}>Inscrivez
-                                vous.</Link></Text>
+                        <Text size="2" style={{margin: '6px 0'}} className={'text-center'}>Vous avez un
+                            compte ? <Link href={"/signin"}
+                                           className={'font-semibold text-violet-700 cursor-pointer'}>Connectez-vous.</Link></Text>
                     </div>
                 </div>
             </div>
@@ -79,4 +79,4 @@ const Signin = () => {
         ;
 }
 
-export default Signin;
+export default Create;
