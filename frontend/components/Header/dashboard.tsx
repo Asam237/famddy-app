@@ -3,6 +3,9 @@ import {useRouter} from "next/router";
 import {useEffect, useState} from "react";
 import Link from "next/link";
 import DropDown from "../DropDown";
+import {cleanText} from "../../utils/helpers";
+import {TextField} from "@radix-ui/themes";
+import {FaSearch} from "react-icons/fa";
 
 const HeaderDashboard = () => {
         const {data} = useMe();
@@ -24,7 +27,17 @@ const HeaderDashboard = () => {
                             </Link>
                         </div>
                         <div className={'flex justify-center items-center space-x-4'}>
-                            <DropDown name={data?.user?.full_name}/>
+                            <TextField.Root>
+                                <TextField.Slot>
+                                    <FaSearch size={14}/>
+                                </TextField.Slot>
+                                <TextField.Input placeholder="Search the link..."/>
+                            </TextField.Root>
+                            <span
+                                className={'bg-violet-700 w-8 flex text-lg justify-center items-center h-8 p-2 rounded-full text-white font-extrabold'}>
+                                {data?.user?.full_name.charAt(0)}
+                            </span>
+                            <DropDown name={cleanText(data?.user?.full_name, 10)}/>
                             <div className={`${location === "/" ? 'flex' : 'hidden'}`}>
                                 <Link href={"/dashboard"}>
                                     <button

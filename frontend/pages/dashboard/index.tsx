@@ -23,6 +23,7 @@ const Dashboard = () => {
                                          label={"Link"}
                                          description={"Lorem ipsum dolor sit amet, consectetur adipisicing elit."}/>
                     </div>
+                    <hr />
                     <div
                         className={
                             "my-10 grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
