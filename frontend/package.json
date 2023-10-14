@@ -1,5 +1,5 @@
 {
-  "name": "ramly",
+  "name": "famddy",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,9 +10,6 @@
     "lint:ts": "eslint --ext \".ts\" .",
     "lint:prettier": "prettier --check .",
     "lintfix": "prettier --write --list-different . && yarn lint:ts --fix",
-    "copy-out": "mv out/_next out/next && sed -i '' -e 's/\\/_next/\\.\\/next/g' out/**.html && mv out/index.html ./extension && rsync -va --delete-after out/next/ ./extension/next/ && rm -rf out",
-    "copy-public": "cp public/images/* extension/images",
-    "build:extension": "next build && next export && npm run lint:build"
   },
   "dependencies": {
     "@next/font": "13.1.1",
