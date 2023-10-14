@@ -4,8 +4,7 @@ import {useEffect, useState} from "react";
 import Link from "next/link";
 import DropDown from "../DropDown";
 import {cleanText} from "../../utils/helpers";
-import {TextField} from "@radix-ui/themes";
-import {FaSearch} from "react-icons/fa";
+import {useFindShortener} from "../../hooks/requests/queries/useShortener";
 
 const HeaderDashboard = () => {
         const {data} = useMe();
@@ -14,9 +13,11 @@ const HeaderDashboard = () => {
         const toHome = () => {
             router.push("/");
         }
+        const {data: dataShortener} = useFindShortener();
         useEffect(() => {
             setLocation(window.location.pathname);
         }, []);
+
         return (
             <header className={'border-b shadow-sm bg-white z-10 sticky left-0 top-0'}>
                 <div className="container mx-auto py-4">
@@ -27,12 +28,6 @@ const HeaderDashboard = () => {
                             </Link>
                         </div>
                         <div className={'flex justify-center items-center space-x-4'}>
-                            <TextField.Root>
-                                <TextField.Slot>
-                                    <FaSearch size={14}/>
-                                </TextField.Slot>
-                                <TextField.Input placeholder="Search the link..."/>
-                            </TextField.Root>
                             <span
                                 className={'bg-violet-700 w-8 flex text-lg justify-center items-center h-8 p-2 rounded-full text-white font-extrabold'}>
                                 {data?.user?.full_name.charAt(0)}

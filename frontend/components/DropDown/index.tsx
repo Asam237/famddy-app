@@ -19,7 +19,7 @@ const DropDown = ({name}: { name: String }) => {
                     </div>
                 </DropdownMenu.Trigger>
                 <DropdownMenu.Content size="2">
-                    <DropdownMenu.Item>Ajouter un lien</DropdownMenu.Item>
+                    <DropdownMenu.Item>Profile</DropdownMenu.Item>
                     <DropdownMenu.Separator/>
                     <DropdownMenu.Item onClick={toLogout}>Deconnexion</DropdownMenu.Item>
                 </DropdownMenu.Content>
