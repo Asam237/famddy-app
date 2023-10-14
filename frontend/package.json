@@ -1,15 +1,15 @@
 {
-  "name": "famddy",
+  "name": "famdyy",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3030",
+    "dev": "next dev",
     "build": "next build",
-    "start": "next start -p 3030",
+    "start": "next start",
     "lint": "next lint",
     "lint:ts": "eslint --ext \".ts\" .",
     "lint:prettier": "prettier --check .",
-    "lintfix": "prettier --write --list-different . && yarn lint:ts --fix",
+    "lintfix": "prettier --write --list-different . && yarn lint:ts --fix"
   },
   "dependencies": {
     "@next/font": "13.1.1",
