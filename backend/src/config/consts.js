@@ -7,7 +7,7 @@ const badResponse = function(){
 
 module.exports = {
     APP_NAME: process.env.APP_NAME,
-    MONGODB_URL: process.env.MONGODB_URL,
+    MONGODB_URL: process.env.MONGO_URI,
     ENV: process.env.ENV,
     badResponse: badResponse,
     newResponse: function(){

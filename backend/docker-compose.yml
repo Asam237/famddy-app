@@ -1,10 +1,27 @@
-version: "3"
+version: "3.9"
 services:
   mongodb:
     image: mongo:5.0.2
-    ports:
-      - "27017:27017"
     volumes:
       - db:/data/db
+  api:
+    container_name: api
+    depends_on: 
+      - mongodb
+    build:
+      context: .
+      dockerfile: Dockerfile
+    expose:
+      - 3010
+    environment:
+      VIRTUAL_PORT: "3010"
+      VIRTUAL_HOST: "famddy-api.abbasali.cm"
+      LETSENCRYPT_HOST: "famddy-api.abbasali.cm"
+      LETSENCRYPT_EMAIL: "abbsaliaboubakar@gmail.com"
+
+networks:
+  default:
+    name: "famddy"
 volumes:
   db:
+
