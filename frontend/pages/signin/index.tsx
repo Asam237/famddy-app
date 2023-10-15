@@ -1,26 +1,26 @@
 import Head from "next/head";
 import {FaMagic} from "react-icons/fa";
 import {Button, Heading, Text, TextField} from '@radix-ui/themes'
-import {useState} from "react";
 import Link from "next/link";
 import {useRouter} from "next/router";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {LoginUserInput} from "../../typings";
 import {useLoginUser} from "../../hooks/requests/mutations/useLoginUser";
+import {toast, ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 const Signin = () => {
 
-    const [signin, setSignin] = useState(true);
     const router = useRouter();
     const {register, handleSubmit, formState: {errors}} = useForm<LoginUserInput>();
     const loginUser = useLoginUser();
-
 
     const handleLogin: SubmitHandler<LoginUserInput> = (data: LoginUserInput) => {
         loginUser.mutate({...data});
         if (loginUser.isSuccess) {
             router.push("/dashboard");
+            toast.success("Login success !");
         }
     }
 
@@ -74,9 +74,9 @@ const Signin = () => {
                     </div>
                 </div>
             </div>
+            <ToastContainer/>
         </div>
     )
-        ;
 }
 
 export default Signin;

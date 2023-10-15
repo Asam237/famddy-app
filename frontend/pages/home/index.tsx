@@ -4,21 +4,27 @@ import {ShortenerInput} from "../../typings";
 import AppLayout from "../layout/app";
 import {TextField} from "@radix-ui/themes";
 import {FaArrowRight, FaChrome, FaCopy, FaLink, FaSave} from "react-icons/fa";
-import {cleanText} from "../../utils/helpers";
 import Link from "next/link";
 import Image from "next/image";
 import {UrlPic} from "../../utils/images";
-import {ToastContainer} from "react-toastify";
+import {toast, ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import {cleanText} from "../../utils/helpers";
 
 const Home = () => {
     const {data, mutate: createShortener} = useShortener();
-    // const copyToClipboard = useCopy("myInput");
     const {handleSubmit, formState: {errors}, register} = useForm<ShortenerInput>();
-
     const handlerShortener: SubmitHandler<ShortenerInput> = (data: ShortenerInput) => {
         createShortener({...data});
     }
+    const copyToClipboard = () => {
+        const copyText: any = window.document.getElementById("myInput");
+        copyText?.select();
+        copyText?.setSelectionRange(0, 99999);
+        navigator.clipboard.writeText(copyText?.value);
+        toast.success("Copy to clipboard");
+    };
+
     return (
         <AppLayout>
             <main className={"py-10 xl:py-20 px-4 xl:px-0"}>
@@ -50,14 +56,21 @@ const Home = () => {
                                 className={"flex justify-center items-center px-4 py-6 my-4 rounded-md xl:my-8 bg-violet-100 flex-col"}>
                                 <input
                                     className={`text-gray-700 text-sm font-semibold flex items-center`}
+                                    value={cleanText(data?.shortener?.shortUrl, 20)}
+                                    placeholder={cleanText(data?.shortener?.shortUrl, 10)}
+                                    disabled
+                                />
+                                <input
+                                    className={`text-gray-700 text-sm font-semibold items-center hidden`}
                                     id="myInput"
-                                    value={cleanText(data?.shortener?.shortUrl, 24)}
+                                    value={data?.shortener?.shortUrl}
                                     placeholder={data?.shortener?.shortUrl}
                                     disabled
                                 />
                                 <div className={'mt-4 flex flex-row justify-center items-center space-x-5'}>
                                     <FaCopy
                                         size={24}
+                                        onClick={() => copyToClipboard()}
                                         className={'cursor-pointer text-gray-700 hover:text-violet-700'}/>
                                     <Link href={data?.shortener?.shortUrl}>
                                         <FaChrome size={24}
