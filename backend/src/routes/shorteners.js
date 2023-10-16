@@ -39,7 +39,7 @@ router.post("/of/user", async (req, res) => {
 
 router.get("/:shortUrl", (req, res, next) => {
     let shortUrl = req.params.shortUrl;
-    Shortener.findOne({shortUrl: "http://localhost:3010/" + shortUrl}).then(async (shortener) => {
+    Shortener.findOne({shortUrl: BASE_URL + shortUrl}).then(async (shortener) => {
         if (shortener == null)
             return res.status(400).send(Consts.standardErrorResponse(ErrorCodes.INVALID_PARAMS));
         res.redirect(shortener?.longUrl.toString());
