@@ -1,8 +1,11 @@
-import {FaBars} from "react-icons/fa";
+import {FaBars, FaTimes} from "react-icons/fa";
 import Link from "next/link";
 import {navs} from "../../utils/consts";
+import {useState} from "react";
 
 const HeaderPrimary = () => {
+    const [nav, setNav] = useState(false);
+
     return (
         <header className={'border-b bg-white z-10 sticky left-0 top-0'}>
             <div className="container mx-auto py-4">
@@ -14,7 +17,7 @@ const HeaderPrimary = () => {
                     </div>
                     <div className={"hidden xl:flex justify-center items-center space-x-4"}>
                         <ul className={"flex space-x-4"}>
-                            {navs.map((item, index) => {
+                            {navs.map((item) => {
                                 return (
                                     <li key={item.path} className={"text-sm text-gray-700"}>
                                         <Link href={item.path}>{item.name}</Link>
@@ -28,9 +31,35 @@ const HeaderPrimary = () => {
                             Sign in
                         </Link>
                     </div>
-                    <FaBars size={26} className={'text-gray-700 flex xl:hidden'}/>
+                    <FaBars onClick={() => setNav(!nav)} size={26} className={`text-gray-700 ${nav ? 'hidden': 'flex xl:hidden'}`}/>
+                    <FaTimes
+                        size={30}
+                        className={`${!nav ? 'hidden': 'flex'}`}
+                        onClick={() => setNav(!nav)}
+                    />
                 </div>
             </div>
+
+            {
+                nav == true && (
+                    <div className={'container mx-auto'}>
+                        <ul className={"flex space-y-4 flex-col justify-center items-end mb-4"}>
+                            {navs.map((item) => {
+                                return (
+                                    <li key={item.path} className={"text-sm text-gray-700"}>
+                                        <Link href={item.path}>{item.name}</Link>
+                                    </li>
+                                );
+                            })}
+                            <Link
+                                href={"/signin"}
+                                className={'bg-violet-100 border-2 rounded-full px-4 py-1 text-violet-700 font-semibold text-sm'}>
+                                Sign in
+                            </Link>
+                        </ul>
+                    </div>
+                )
+            }
         </header>
     );
 };
