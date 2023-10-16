@@ -11,11 +11,11 @@ const Dashboard = () => {
     const {data, isLoading} = useShortenerOfuser();
     const {push} = useRouter();
 
-    useEffect(() => {
-        if (typeof data === "undefined") {
-            push("/home")
-        }
-    }, []);
+    // useEffect(() => {
+    //     if (typeof data === "undefined") {
+    //         push("/home")
+    //     }
+    // }, []);
 
     if (isLoading) {
         return <Spinner />
