@@ -6,6 +6,7 @@ const Shortener = require("../models/shortener");
 const User = require("../models/user");
 const {generate} = require("shortid");
 const BASE_URL = "https://famddy-api.abbasali.cm/"
+// const BASE_URL = "http://localhost:3010/"
 
 router.post("/", async (req, res) => {
     const longUrl = req.body.longUrl;
@@ -34,17 +35,6 @@ router.post("/of/user", async (req, res) => {
     let r = Consts.newResponse();
     r.shortener = createdShortener;
     return res.status(200).send(r);
-});
-
-
-router.get("/:shortUrl", (req, res, next) => {
-    let shortUrl = req.params.shortUrl;
-    Shortener.findOne({shortUrl: BASE_URL + shortUrl}).then(async (shortener) => {
-        if (shortener == null)
-            return res.status(400).send(Consts.standardErrorResponse(ErrorCodes.INVALID_PARAMS));
-        res.redirect(shortener?.longUrl.toString());
-        next();
-    }, (err) => Consts.errorFallback(err, res));
 });
 
 router.get("/", (req, res) => {

@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
+const bodyParser = require('body-parser');
 const specs = swaggerJsDoc({
     definition: {
         openapi: "3.0.0",
@@ -24,9 +25,13 @@ const shortenerRouter = require("./src/routes/shorteners");
 mongoose.connect(MONGODB_URL).then(function () {
     const usersRouter = require("./src/routes/users");
     const shortenerRouter = require("./src/routes/shorteners");
+    const shortenerRedirectRouter = require("./src/routes/shortenersRedirects");
+
     console.log("connected to database");
+    app.use(bodyParser.json());
     app.use("/users", usersRouter);
     app.use("/shorteners", shortenerRouter);
+    app.use("/", shortenerRedirectRouter);
     app.use('/swagger', swaggerUi.serve, swaggerUi.setup(specs));
 });
 
