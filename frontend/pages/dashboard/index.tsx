@@ -3,9 +3,24 @@ import CardPreview from "../../components/CardPreview";
 import DialogComponent from "../../components/Dialog";
 import {useShortenerOfuser} from "../../hooks/requests/queries/useShortenerOfUser";
 import 'react-loading-skeleton/dist/skeleton.css';
+import {useRouter} from "next/router";
+import {useEffect} from "react";
+import Spinner from "../../components/Spinner";
 
 const Dashboard = () => {
-    const {data} = useShortenerOfuser();
+    const {data, isLoading} = useShortenerOfuser();
+    const {push} = useRouter();
+
+    useEffect(() => {
+        if (typeof data === "undefined") {
+            push("/home")
+        }
+    }, []);
+
+    if (isLoading) {
+        return <Spinner />
+    }
+
     return (
         <DashboardLayout>
             <div className={"py-8"}>
