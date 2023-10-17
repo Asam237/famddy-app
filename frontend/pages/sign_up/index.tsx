@@ -17,14 +17,14 @@ const Create = () => {
     const handleRegister: SubmitHandler<CreateUserInput> = (data: CreateUserInput) => {
         createUser.mutate({...data});
         if (createUser.isSuccess) {
-            router.push("/create");
+            router.push("/sign_up");
         }
     }
 
     return (
         <div className={"bg-gray-100 h-screen"}>
             <Head>
-                <title>Signin</title>
+                <title>Sign Up | Famddy</title>
                 <meta name="description" content=""/>
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
                 <link rel="icon" href="/favicon.ico"/>
@@ -35,18 +35,15 @@ const Create = () => {
                         <div className={'flex justify-center items-center flex-col px-8'}>
                             <FaMagic size={80} color={'white'}/>
                             <Text size="3" weight="medium" align="center" style={{color: 'white', marginTop: '10px'}}>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, deleniti dolore et
-                                ipsam reprehenderit sed.
+                                A comprehensive solution that can help strengthen all points of connection between your
+                                content and your audience.
                             </Text>
                         </div>
                     </div>
-
-
                     <div
                         className={'flex flex-col w-full md:w-1/2 h-full justify-center p-4 md:px-12 bg-white'}>
-                        <Heading>S&apos;inscrire</Heading>
-                        <Text size="2" style={{margin: '14px 0'}}>Lorem ipsum dolor sit amet,
-                            consectetur adipisicing elit.</Text>
+                        <Heading>Register now</Heading>
+                        <div style={{margin: '10px 0'}}/>
                         <form onSubmit={handleSubmit(handleRegister)}>
                             <TextField.Root size="3">
                                 <TextField.Input {...register("full_name")} placeholder="Full Name"/>
@@ -68,9 +65,9 @@ const Create = () => {
                                 {createUser.isLoading ? "Loading.." : "Sign Up"}
                             </Button>
                         </form>
-                        <Text size="2" style={{margin: '6px 0'}} className={'text-center'}>Vous avez un
-                            compte ? <Link href={"/signin"}
-                                           className={'font-semibold text-violet-700 cursor-pointer'}>Connectez-vous.</Link></Text>
+                        <Text size="2" style={{margin: '6px 0'}} className={'text-center'}>Already have an account
+                            ? <Link href={"/sign_in"}
+                                    className={'font-semibold text-violet-700 cursor-pointer'}>Log in.</Link></Text>
                     </div>
                 </div>
             </div>

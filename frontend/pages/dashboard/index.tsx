@@ -2,15 +2,11 @@ import DashboardLayout from "../layout/dashboard";
 import CardPreview from "../../components/CardPreview";
 import DialogComponent from "../../components/Dialog";
 import {useShortenerOfuser} from "../../hooks/requests/queries/useShortenerOfUser";
-import Spinner from "../../components/Spinner";
 import 'react-loading-skeleton/dist/skeleton.css';
 
 const Dashboard = () => {
-    const {data, isLoading} = useShortenerOfuser();
 
-    if (isLoading) {
-        return <Spinner />
-    }
+    const {data, isLoading, isError} = useShortenerOfuser();
 
     return (
         <DashboardLayout>

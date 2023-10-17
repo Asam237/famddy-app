@@ -26,7 +26,7 @@ const HeaderPrimary = () => {
                             })}
                         </ul>
                         <Link
-                            href={"/signin"}
+                            href={"/sign_in"}
                             className={'bg-violet-100 border-2 rounded-full px-4 py-1 text-violet-700 font-semibold text-sm'}>
                             Sign in
                         </Link>
@@ -52,7 +52,7 @@ const HeaderPrimary = () => {
                                 );
                             })}
                             <Link
-                                href={"/signin"}
+                                href={"/sign_in"}
                                 className={'bg-violet-100 border-2 rounded-full px-4 py-1 text-violet-700 font-semibold text-sm'}>
                                 Sign in
                             </Link>

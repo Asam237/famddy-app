@@ -76,7 +76,7 @@ const Home = () => {
                                         <FaChrome size={24}
                                                   className={'cursor-pointer text-gray-700 hover:text-violet-700'}/>
                                     </Link>
-                                    <Link href={"/signin"}>
+                                    <Link href={"/sign_in"}>
                                         <FaSave size={24}
                                                 className={'cursor-pointer text-gray-700 hover:text-violet-700'}/>
                                     </Link>
@@ -144,13 +144,13 @@ const Home = () => {
                                 Try Famddy out and observe for yourself
                             </p>
                             <div className={'pt-6 grid grid-cols-1 lg:grid-cols-2 gap-y-4 lg:gap-x-6'}>
-                                <Link href={"/create"}>
+                                <Link href={"/sign_up"}>
                                     <button
                                         className={'bg-violet-700 border-2 rounded-full px-6 py-2 text-white font-semibold text-base w-full'}>
                                         Get Started for free
                                     </button>
                                 </Link>
-                                <Link href={"/signin"}>
+                                <Link href={"/sign_in"}>
                                     <button
                                         className={'bg-gray-100 border rounded-full px-6 py-2 text-gray-700 font-semibold text-base border-violet-200 w-full'}>
                                         Sign in

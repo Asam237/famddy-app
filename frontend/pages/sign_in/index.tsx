@@ -17,15 +17,18 @@ const Signin = () => {
     const loginUser = useLoginUser();
 
     const handleLogin: SubmitHandler<LoginUserInput> = (data: LoginUserInput) => {
-        loginUser.mutate({...data});
-        router.push("/dashboard");
-        toast.success("Login success !");
+        loginUser.mutate({...data}, {
+            onSuccess: () => {
+                router.push("/dashboard");
+                toast.success("Login success !");
+            }
+        });
     }
 
     return (
         <div className={"bg-gray-100 h-screen"}>
             <Head>
-                <title>Sign In</title>
+                <title>Log in and begin sharing</title>
                 <meta name="description" content=""/>
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
                 <link rel="icon" href="/favicon.ico"/>
@@ -36,16 +39,15 @@ const Signin = () => {
                         <div className={'flex justify-center items-center flex-col px-8'}>
                             <FaMagic size={80} color={'white'}/>
                             <Text size="3" weight="medium" align="center" style={{color: 'white', marginTop: '10px'}}>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, deleniti dolore et
-                                ipsam reprehenderit sed.
+                                A comprehensive solution that can help strengthen all points of connection between your
+                                content and your audience.
                             </Text>
                         </div>
                     </div>
                     <div
                         className={'flex flex-col w-full md:w-1/2 h-full justify-center p-4 md:px-12 bg-white'}>
-                        <Heading>Sign In</Heading>
-                        <Text size="2" style={{margin: '14px 0'}}>Lorem ipsum dolor sit amet,
-                            consectetur adipisicing elit.</Text>
+                        <Heading>Log In</Heading>
+                        <div style={{margin: '10px 0'}}/>
                         <form onSubmit={handleSubmit(handleLogin)}>
                             <TextField.Root size="3">
                                 <TextField.Input {...register("email")} placeholder="Email"/>
@@ -62,14 +64,12 @@ const Signin = () => {
                             <Button type={"submit"} size="3"
                                     className={`w-full xl:w-1/4 ${loginUser.isLoading ? 'bg-gray-400' : 'bg-violet-700'}`}
                                     style={{margin: '14px 0', background: "#6D28D9"}}>
-                                {loginUser.isLoading ? <FaSpinner/> : "Connexion"}
+                                {loginUser.isLoading ? <FaSpinner/> : "Log in"}
                             </Button>
                         </form>
-                        <Text size="2" style={{margin: '6px 0'}} className={'text-center'}>Vous n&apos;avez
-                            pas de
-                            compte ? <Link href={"/create"}
-                                           className={'font-semibold text-violet-700 cursor-pointer'}>Inscrivez
-                                vous.</Link></Text>
+                        <Text size="2" style={{margin: '6px 0'}} className={'text-center'}>Don't have an account ? <Link
+                            href={"/sign_up"}
+                            className={'font-semibold text-violet-700 cursor-pointer'}>Sign up.</Link></Text>
                     </div>
                 </div>
             </div>
