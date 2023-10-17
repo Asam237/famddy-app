@@ -15,7 +15,7 @@ const HeaderPrimary = () => {
                             <h4 className={'ml-4 text-2xl font-[700] text-gray-700 cursor-pointer hover:underline underline-offset-4'}>Famddy</h4>
                         </Link>
                     </div>
-                    <div className={"hidden xl:flex justify-center items-center space-x-4"}>
+                    <div className={"hidden lg:flex justify-center items-center space-x-4"}>
                         <ul className={"flex space-x-4"}>
                             {navs.map((item) => {
                                 return (
@@ -31,7 +31,7 @@ const HeaderPrimary = () => {
                             Sign in
                         </Link>
                     </div>
-                    <FaBars onClick={() => setNav(!nav)} size={26} className={`text-gray-700 ${nav ? 'hidden': 'flex xl:hidden'}`}/>
+                    <FaBars onClick={() => setNav(!nav)} size={26} className={`text-gray-700 ${nav ? 'hidden': 'flex lg:hidden'}`}/>
                     <FaTimes
                         size={30}
                         className={`${!nav ? 'hidden': 'flex'}`}

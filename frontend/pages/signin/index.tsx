@@ -1,5 +1,5 @@
 import Head from "next/head";
-import {FaMagic} from "react-icons/fa";
+import {FaMagic, FaSpinner} from "react-icons/fa";
 import {Button, Heading, Text, TextField} from '@radix-ui/themes'
 import Link from "next/link";
 import {useRouter} from "next/router";
@@ -18,16 +18,14 @@ const Signin = () => {
 
     const handleLogin: SubmitHandler<LoginUserInput> = (data: LoginUserInput) => {
         loginUser.mutate({...data});
-        if (loginUser.isSuccess) {
-            router.push("/dashboard");
-            toast.success("Login success !");
-        }
+        router.push("/dashboard");
+        toast.success("Login success !");
     }
 
     return (
         <div className={"bg-gray-100 h-screen"}>
             <Head>
-                <title>Signin</title>
+                <title>Sign In</title>
                 <meta name="description" content=""/>
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
                 <link rel="icon" href="/favicon.ico"/>
@@ -45,7 +43,7 @@ const Signin = () => {
                     </div>
                     <div
                         className={'flex flex-col w-full md:w-1/2 h-full justify-center p-4 md:px-12 bg-white'}>
-                        <Heading>Se connecter</Heading>
+                        <Heading>Sign In</Heading>
                         <Text size="2" style={{margin: '14px 0'}}>Lorem ipsum dolor sit amet,
                             consectetur adipisicing elit.</Text>
                         <form onSubmit={handleSubmit(handleLogin)}>
@@ -61,9 +59,10 @@ const Signin = () => {
                                 <p className={"text-center text-sm pt-2 text-red-500 font-semibold"}>Login
                                     Failed!</p>
                             }
-                            <Button type={"submit"} size="3" className={'bg-violet-700 w-full xl:w-1/4'}
+                            <Button type={"submit"} size="3"
+                                    className={`w-full xl:w-1/4 ${loginUser.isLoading ? 'bg-gray-400' : 'bg-violet-700'}`}
                                     style={{margin: '14px 0', background: "#6D28D9"}}>
-                                {loginUser.isLoading ? "Loading..." : "Connexion"}
+                                {loginUser.isLoading ? <FaSpinner/> : "Connexion"}
                             </Button>
                         </form>
                         <Text size="2" style={{margin: '6px 0'}} className={'text-center'}>Vous n&apos;avez

@@ -143,7 +143,7 @@ const Home = () => {
                             <p className={'text-center py-2 text-base text-gray-700'}>
                                 Try Famddy out and observe for yourself
                             </p>
-                            <div className={'pt-6 grid grid-cols-1 xl:grid-cols-2 gap-y-4 xl:gap-x-6'}>
+                            <div className={'pt-6 grid grid-cols-1 lg:grid-cols-2 gap-y-4 lg:gap-x-6'}>
                                 <Link href={"/create"}>
                                     <button
                                         className={'bg-violet-700 border-2 rounded-full px-6 py-2 text-white font-semibold text-base w-full'}>
@@ -171,11 +171,11 @@ const Home = () => {
                                     resources, sent to your inbox weekly.</p>
                             </div>
                             <div
-                                className={"flex flex-col xl:flex-row space-y-4 xl:space-y-0 xl:space-x-2 items-center mt-4"}>
+                                className={"flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-2 items-center mt-4"}>
                                 <TextField.Root>
                                     <TextField.Input placeholder="Your email"/>
                                 </TextField.Root>
-                                <div className={'bg-violet-700 rounded-md text-center text-white px-4 py-1 w-full xl:w-1/3'}>Join in!
+                                <div className={'bg-violet-700 rounded-md text-center text-white px-4 py-1 w-full lg:w-1/3'}>Join in!
                                 </div>
                             </div>
                         </div>
