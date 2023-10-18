@@ -1,12 +1,14 @@
 import DashboardLayout from "../layout/dashboard";
-import CardPreview from "../../components/CardPreview";
 import DialogComponent from "../../components/Dialog";
 import {useShortenerOfuser} from "../../hooks/requests/queries/useShortenerOfUser";
 import 'react-loading-skeleton/dist/skeleton.css';
+import CardComponent from "../../components/Card";
 
 const Dashboard = () => {
 
     const {data, isLoading, isError} = useShortenerOfuser();
+
+    console.log("DATA ||||||==>", data);
 
     return (
         <DashboardLayout>
@@ -27,13 +29,15 @@ const Dashboard = () => {
                     <hr/>
                     <div
                         className={
-                            "my-10 grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+                            "my-10 grid gap-x-4 gap-y-6 grid-cols-1"
                         }
                     >
                         {
                             data?.shorteners.map((item: any) => {
                                 return (
-                                    <CardPreview key={item._id} longUrl={item.longUrl}/>
+                                    // <CardPreview key={item._id} longUrl={item.longUrl}/>
+                                    <CardComponent key={item._id} longUrl={item.longUrl} date={item.updated_at}
+                                                   shortUrl={item.shortUrl}/>
                                 )
                             })
                         }

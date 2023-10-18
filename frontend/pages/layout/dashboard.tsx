@@ -24,7 +24,7 @@ const links = [
 
 const DashboardLayout = ({children}: any) => {
     return (
-        <>
+        <div className={"bg-[#f5f6f7] h-full"}>
             <Head>
                 <title>Free URL Shortener</title>
                 <meta name="description" content=""/>
@@ -51,7 +51,7 @@ const DashboardLayout = ({children}: any) => {
                     </div>
                 </div>
             </footer>
-        </>
+        </div>
     );
 }
 

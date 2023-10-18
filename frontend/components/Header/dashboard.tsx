@@ -10,10 +10,7 @@ const HeaderDashboard = () => {
         const {data} = useMe();
         const router = useRouter();
         const [location, setLocation] = useState("");
-        const toHome = () => {
-            router.push("/");
-        }
-        const {data: dataShortener} = useFindShortener();
+
         useEffect(() => {
             setLocation(window.location.pathname);
         }, []);
@@ -23,7 +20,7 @@ const HeaderDashboard = () => {
                 <div className="container mx-auto py-4">
                     <div className="flex justify-between items-center">
                         <div className={'flex items-center'}>
-                            <Link href={"/"}>
+                            <Link href={"/home"}>
                                 <h4 className={'ml-4 text-2xl font-[700] text-gray-700 cursor-pointer hover:underline hover:underline-offset-4'}>Famddy</h4>
                             </Link>
                         </div>

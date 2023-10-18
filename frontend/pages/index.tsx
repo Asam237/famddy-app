@@ -13,6 +13,5 @@ export default function Index() {
             push("/home");
         }
     }, []);
-
 }
 
