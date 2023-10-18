@@ -67,7 +67,7 @@ const Signin = () => {
                                 {loginUser.isLoading ? <FaSpinner/> : "Log in"}
                             </Button>
                         </form>
-                        <Text size="2" style={{margin: '6px 0'}} className={'text-center'}>Don't have an account ? <Link
+                        <Text size="2" style={{margin: '6px 0'}} className={'text-center'}>Don&apos;t have an account ? <Link
                             href={"/sign_up"}
                             className={'font-semibold text-violet-700 cursor-pointer'}>Sign up.</Link></Text>
                     </div>
