@@ -4,8 +4,7 @@ const Shortener = require("../models/shortener");
 const Consts = require("../config/consts");
 const ErrorCodes = require("../config/error_codes");
 
-const BASE_URL = "https://famddy-api.abbasali.cm/"
-// const BASE_URL = "http://localhost:3010/"
+const BASE_URL = process.env.BASE_URL;
 
 router.get("/:shortUrl", (req, res, next) => {
     let shortUrl = req.params.shortUrl;

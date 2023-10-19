@@ -10,6 +10,7 @@ import {UrlPic} from "../../utils/images";
 import {toast, ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {cleanText} from "../../utils/helpers";
+import {useAuth} from "../../hooks/useAuth";
 
 const Home = () => {
     const {data, mutate: createShortener} = useShortener();
@@ -17,6 +18,7 @@ const Home = () => {
     const handlerShortener: SubmitHandler<ShortenerInput> = (data: ShortenerInput) => {
         createShortener({...data});
     }
+    const {uid} = useAuth();
     const copyToClipboard = () => {
         const copyText: any = window.document.getElementById("myInput");
         copyText?.select();
@@ -116,7 +118,8 @@ const Home = () => {
                             </h4>
                             <div className={"bg-violet-200 p-10 rounded-xl mt-6 xl:mt-10 text-center xl:text-start"}>
                                 <blockquote className="text-xl font-semibold text-gray-900">
-                                    <svg className="w-8 h-8 text-gray-400 dark:text-gray-600 mb-4 hidden xl:flex" aria-hidden="true"
+                                    <svg className="w-8 h-8 text-gray-400 dark:text-gray-600 mb-4 hidden xl:flex"
+                                         aria-hidden="true"
                                          xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 14">
                                         <path
                                             d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z"/>
@@ -133,7 +136,7 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-                <div className={`pt-10 xl:pt-28`}>
+                <div className={`pt-10 xl:pt-28 ${!uid ? 'flex' : 'hidden'}`}>
                     <div className="container mx-auto">
                         <div className="flex justify-center items-center flex-col">
                             <h4 className={'text-3xl xl:text-4xl font-bold text-gray-700 flex justify-center items-center text-center'}>
@@ -175,7 +178,9 @@ const Home = () => {
                                 <TextField.Root>
                                     <TextField.Input placeholder="Your email"/>
                                 </TextField.Root>
-                                <div className={'bg-violet-700 rounded-md text-center text-white px-4 py-1 w-full lg:w-1/3'}>Join in!
+                                <div
+                                    className={'bg-violet-700 rounded-md text-center text-white px-4 py-1 w-full lg:w-1/3'}>Join
+                                    in!
                                 </div>
                             </div>
                         </div>

@@ -3,17 +3,13 @@ import {FaClock, FaCopy, FaEllipsisV} from "react-icons/fa";
 import {useFetchPreview} from "../../hooks/requests/queries/useFetchPreview";
 import Skeleton from "react-loading-skeleton";
 import {joined} from "../../utils/current-date";
+import {CardComponentType} from "../../typings";
 
 
-type CardComponentType = {
-    longUrl: string
-    date: Date
-    shortUrl: string
-};
+const CardComponent = ({longUrl, date, _id, shortUrl}: CardComponentType) => {
 
-const CardComponent = ({longUrl, date, shortUrl}: CardComponentType) => {
+    const {data} = useFetchPreview(longUrl);
 
-    const {data, isLoading} = useFetchPreview(longUrl);
     if (!data) {
         return (
             <>
@@ -23,9 +19,9 @@ const CardComponent = ({longUrl, date, shortUrl}: CardComponentType) => {
     }
 
     return (
-        <Card asChild className={"w-full"}>
+        <Card key={_id} asChild className={"w-full"}>
             <div>
-                <div className={"flex flex-col-reverse lg:flex-row lg:justify-between p-4"}>
+                <div className={"flex flex-col lg:flex-row lg:justify-between p-4"}>
                     <div className={'flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-4'}>
                         <img
                             className="h-40 w-40 object-cover rounded-xl"
@@ -47,19 +43,19 @@ const CardComponent = ({longUrl, date, shortUrl}: CardComponentType) => {
                             <div className={"flex items-center space-x-2"}>
                                 <FaClock color={"gray"}/>
                                 <p className={'text-gray-500 text-xs'}>
-                                    {joined(date)}
+                                    {joined(date!!)}
                                 </p>
                             </div>
                         </div>
                     </div>
-                    <div className={'mb-2 lg:mb-0'}>
+                    <div className={'mt-2 lg:mt-0'}>
                         <div className={'flex items-center space-x-2'}>
                             <div
                                 className={"flex space-x-2 items-center border rounded-md w-20 justify-center px-3 bg-gray-200 py-2"}>
                                 <FaCopy color={"gray"} size={14}/>
                                 <p className={"text-sm font-medium"}>Copy</p>
                             </div>
-                            <div>
+                            <div className={'hidden lg:flex'}>
                                 <FaEllipsisV/>
                             </div>
                         </div>

@@ -25,7 +25,7 @@ const DropDown = ({name}: { name: String }) => {
                     <DropdownMenu.Content size="2">
                         <DropdownMenu.Item>Profile</DropdownMenu.Item>
                         <DropdownMenu.Separator/>
-                        <DropdownMenu.Item onClick={toLogout}>Deconnexion</DropdownMenu.Item>
+                        <DropdownMenu.Item onClick={toLogout}>Logout</DropdownMenu.Item>
                     </DropdownMenu.Content>
                 </DropdownMenu.Root>
             </Flex>

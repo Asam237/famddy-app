@@ -18,3 +18,11 @@ export type ShortenerUserInput = {
     user: string
 }
 
+export type CardComponentType = {
+    longUrl: string
+    date?: Date
+    shortUrl: string
+    _id?: any
+    updated_at?: Date
+};
+

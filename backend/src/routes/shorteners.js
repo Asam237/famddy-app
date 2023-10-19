@@ -5,8 +5,7 @@ const ErrorCodes = require("../config/error_codes");
 const Shortener = require("../models/shortener");
 const User = require("../models/user");
 const {generate} = require("shortid");
-const BASE_URL = "https://famddy-api.abbasali.cm/"
-// const BASE_URL = "http://localhost:3010/"
+const BASE_URL = process.env.BASE_URL;
 
 router.post("/", async (req, res) => {
     const longUrl = req.body.longUrl;
