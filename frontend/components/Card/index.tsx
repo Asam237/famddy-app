@@ -48,7 +48,7 @@ const CardComponent = ({longUrl, date, _id, shortUrl}: CardComponentType) => {
                             </div>
                         </div>
                     </div>
-                    <div className={'mt-2 lg:mt-0'}>
+                    <div className={'mt-4 lg:mt-0'}>
                         <div className={'flex items-center space-x-2'}>
                             <div
                                 className={"flex space-x-2 items-center border rounded-md w-20 justify-center px-3 bg-gray-200 py-2"}>
