@@ -4,7 +4,6 @@ import {useEffect, useState} from "react";
 import Link from "next/link";
 import DropDown from "../DropDown";
 import {cleanText} from "../../utils/helpers";
-import {useFindShortener} from "../../hooks/requests/queries/useShortener";
 
 const HeaderDashboard = () => {
         const {data} = useMe();
@@ -14,6 +13,7 @@ const HeaderDashboard = () => {
         useEffect(() => {
             setLocation(window.location.pathname);
         }, []);
+
 
         return (
             <header className={'border-b shadow-sm bg-white z-10 sticky left-0 top-0'}>
@@ -30,7 +30,7 @@ const HeaderDashboard = () => {
                                 {data?.user?.full_name.charAt(0)}
                             </span>
                             <DropDown name={cleanText(data?.user?.full_name, 10)}/>
-                            <div className={`${location === "/" ? 'flex' : 'hidden'}`}>
+                            <div className={`${location === "/home" ? 'hidden lg:flex' : 'hidden'}`}>
                                 <Link href={"/dashboard"}>
                                     <button
                                         className={'bg-violet-700 rounded-md text-center text-white px-4 py-2'}>Dashboard
