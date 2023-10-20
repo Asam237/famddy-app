@@ -1,6 +1,5 @@
 import {useQuery} from "@tanstack/react-query";
 import axios from "axios";
-import {queries} from "../../../utils/consts";
 
 const fetchLinkPreview = async (url: string) => {
     let fullUrl = "/api/link-preview?url=" + url;
@@ -10,9 +9,9 @@ const fetchLinkPreview = async (url: string) => {
 
 export const useFetchPreview = (url: string) => {
     return useQuery({
-        queryKey: [queries.fetchPreview],
-        queryFn: () => {
-            return fetchLinkPreview(url);
+        queryKey: ["fetchPreview", { url }],
+        queryFn: async () => {
+            return await fetchLinkPreview(url);
         }
     })
 }

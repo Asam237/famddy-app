@@ -1,5 +1,5 @@
 import {Card, Text} from "@radix-ui/themes";
-import {FaClock, FaCopy, FaEllipsisV} from "react-icons/fa";
+import {FaClock, FaCopy} from "react-icons/fa";
 import {useFetchPreview} from "../../hooks/requests/queries/useFetchPreview";
 import Skeleton from "react-loading-skeleton";
 import {joined} from "../../utils/current-date";
@@ -51,12 +51,9 @@ const CardComponent = ({longUrl, date, _id, shortUrl}: CardComponentType) => {
                     <div className={'mt-4 lg:mt-0'}>
                         <div className={'flex items-center space-x-2'}>
                             <div
-                                className={"flex space-x-2 items-center border rounded-md w-20 justify-center px-3 bg-gray-200 py-2"}>
+                                className={"flex items-center border rounded-md w-20 justify-center px-3 bg-gray-200 py-2"}>
                                 <FaCopy color={"gray"} size={14}/>
-                                <p className={"text-sm font-medium"}>Copy</p>
-                            </div>
-                            <div className={'hidden lg:flex'}>
-                                <FaEllipsisV/>
+                                <p className={"text-sm font-medium ml-1"}>Copy</p>
                             </div>
                         </div>
                     </div>
