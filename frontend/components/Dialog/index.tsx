@@ -39,7 +39,7 @@ const DialogComponent = ({title, description, label}: DialogType) => {
                             </Text>
                             <TextField.Input
                                 {...register("longUrl")}
-                                defaultValue="famddy.abbasali.cm"
+                                defaultValue=""
                                 placeholder="Enter your link"
                             />
                         </label>

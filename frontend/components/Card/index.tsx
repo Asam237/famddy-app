@@ -4,6 +4,7 @@ import {useFetchPreview} from "../../hooks/requests/queries/useFetchPreview";
 import Skeleton from "react-loading-skeleton";
 import {joined} from "../../utils/current-date";
 import {CardComponentType} from "../../typings";
+import Link from "next/link";
 
 
 const CardComponent = ({longUrl, date, _id, shortUrl}: CardComponentType) => {
@@ -36,9 +37,11 @@ const CardComponent = ({longUrl, date, _id, shortUrl}: CardComponentType) => {
                                 <Text as="div" color="blue" size="2" className={"pt-2 font-semibold"}>
                                     {data?.url}
                                 </Text>
-                                <Text as="div" color="gray" size="2" className={"pt-1 font-semibold"}>
-                                    {shortUrl}
-                                </Text>
+                                <Link href={shortUrl} target={'_blank'}>
+                                    <Text as="div" color="gray" size="2" className={"pt-1 font-semibold"}>
+                                        {shortUrl}
+                                    </Text>
+                                </Link>
                             </div>
                             <div className={"flex items-center space-x-2"}>
                                 <FaClock color={"gray"}/>
