@@ -11,9 +11,11 @@ import {toast, ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {cleanText} from "../../utils/helpers";
 import {useAuth} from "../../hooks/useAuth";
+import 'react-loading-skeleton/dist/skeleton.css';
+import Skeleton from "react-loading-skeleton";
 
 const Home = () => {
-    const {data, mutate: createShortener} = useShortener();
+    const {data, mutate: createShortener, isLoading} = useShortener();
     const {handleSubmit, formState: {errors}, register} = useForm<ShortenerInput>();
     const handlerShortener: SubmitHandler<ShortenerInput> = (data: ShortenerInput) => {
         createShortener({...data});
@@ -52,6 +54,12 @@ const Home = () => {
                             URL
                         </button>
                     </form>
+                    {
+                        isLoading &&
+                        <div className={'container mx-auto xl:max-w-4xl mt-8'}>
+                            <Skeleton className="mb-2 h-10 w-10 mx-auto bg-slate-200 dark:bg-slate-800"/>
+                        </div>
+                    }
                     {data?.shortener?.shortUrl.length > 5 &&
                         <div className={'container mx-auto xl:max-w-4xl'}>
                             <div
