@@ -15,8 +15,8 @@ services:
       - 3010
     environment:
       VIRTUAL_PORT: "3010"
-      VIRTUAL_HOST: "famddy-api.abbasali.cm"
-      LETSENCRYPT_HOST: "famddy-api.abbasali.cm"
+      VIRTUAL_HOST: "fdy.abbasali.cm"
+      LETSENCRYPT_HOST: "fdy.abbasali.cm"
       LETSENCRYPT_EMAIL: "abbsaliaboubakar@gmail.com"
 
 networks:
