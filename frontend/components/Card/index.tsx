@@ -5,11 +5,21 @@ import Skeleton from "react-loading-skeleton";
 import {joined} from "../../utils/current-date";
 import {CardComponentType} from "../../typings";
 import Link from "next/link";
+import {toast} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 const CardComponent = ({longUrl, date, _id, shortUrl}: CardComponentType) => {
 
     const {data} = useFetchPreview(longUrl);
+    const copyToClipboard = () => {
+        console.log("HELLO WORLD;;;;;;")
+        const copyText: any = window.document.getElementById("myInput");
+        copyText?.select();
+        copyText?.setSelectionRange(0, 99999);
+        navigator.clipboard.writeText(copyText?.value);
+        toast.success("Copy to clipboard");
+    };
 
     if (!data) {
         return (
@@ -41,9 +51,17 @@ const CardComponent = ({longUrl, date, _id, shortUrl}: CardComponentType) => {
                                     <Text as="div" color="gray" size="2" className={"pt-1 font-semibold"}>
                                         {shortUrl}
                                     </Text>
+                                    <input
+                                        className={`text-gray-700 text-sm font-semibold items-center hidden`}
+                                        id="myInput"
+                                        value={shortUrl}
+                                        placeholder={shortUrl}
+                                        disabled
+                                    />
                                 </Link>
                             </div>
-                            <div className={"flex items-center space-x-2"}>
+                            <div
+                                className={"flex items-center space-x-2"}>
                                 <FaClock color={"gray"}/>
                                 <p className={'text-gray-500 text-xs'}>
                                     {joined(date!!)}
@@ -54,7 +72,8 @@ const CardComponent = ({longUrl, date, _id, shortUrl}: CardComponentType) => {
                     <div className={'mt-4 lg:mt-0'}>
                         <div className={'flex items-center space-x-2'}>
                             <div
-                                className={"flex items-center border rounded-md w-20 justify-center px-3 bg-gray-200 py-2"}>
+                                onClick={() => copyToClipboard()}
+                                className={"flex items-center border rounded-md w-20 justify-center px-3 bg-gray-200 py-2 cursor-pointer"}>
                                 <FaCopy color={"gray"} size={14}/>
                                 <p className={"text-sm font-medium ml-1"}>Copy</p>
                             </div>
