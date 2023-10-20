@@ -1,4 +1,6 @@
 import Head from "next/head";
+import {toast, ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {FaMagic} from "react-icons/fa";
 import {Button, Heading, Text, TextField} from '@radix-ui/themes'
 import {useRouter} from "next/router";
@@ -15,10 +17,12 @@ const Create = () => {
     const createUser = useRegisterUser();
 
     const handleRegister: SubmitHandler<CreateUserInput> = (data: CreateUserInput) => {
-        createUser.mutate({...data});
-        if (createUser.isSuccess) {
-            router.push("/sign_up");
-        }
+        createUser.mutate({...data}, {
+            onSuccess: () => {
+                router.push("/sign_in");
+                toast.success("Successful registration");
+            }
+        });
     }
 
     return (
@@ -71,9 +75,9 @@ const Create = () => {
                     </div>
                 </div>
             </div>
+            <ToastContainer/>
         </div>
     )
-        ;
 }
 
 export default Create;
