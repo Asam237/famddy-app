@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // const baseURL = "http://localhost:3010/";
-const baseURL = "https://famddy-api.abbasali.cm/";
+const baseURL = "https://fdy.abbasali.cm/";
 
 export const api = axios.create({
     baseURL,
