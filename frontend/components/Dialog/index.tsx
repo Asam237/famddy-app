@@ -40,6 +40,8 @@ const DialogComponent = ({title, description, label}: DialogType) => {
                             <TextField.Input
                                 {...register("longUrl")}
                                 defaultValue=""
+                                pattern="https?://.*"
+                                required
                                 placeholder="Enter your link"
                             />
                         </label>

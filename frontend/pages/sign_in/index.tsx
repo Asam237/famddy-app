@@ -50,10 +50,15 @@ const Signin = () => {
                         <div style={{margin: '10px 0'}}/>
                         <form onSubmit={handleSubmit(handleLogin)}>
                             <TextField.Root size="3">
-                                <TextField.Input {...register("email")} placeholder="Email"/>
+                                <TextField.Input {...register("email", {minLength: 6, maxLength: 20, required: true})}
+                                                 placeholder="Email"/>
                             </TextField.Root>
                             <TextField.Root size="3" style={{marginTop: '14px'}}>
-                                <TextField.Input type={"password"} {...register("password")}
+                                <TextField.Input type={"password"} {...register("password", {
+                                    minLength: 6,
+                                    maxLength: 20,
+                                    required: true
+                                })}
                                                  placeholder="Mot de passe"/>
                             </TextField.Root>
                             {
@@ -67,9 +72,10 @@ const Signin = () => {
                                 {loginUser.isLoading ? <FaSpinner/> : "Log in"}
                             </Button>
                         </form>
-                        <Text size="2" style={{margin: '6px 0'}} className={'text-center'}>Don&apos;t have an account ? <Link
-                            href={"/sign_up"}
-                            className={'font-semibold text-violet-700 cursor-pointer'}>Sign up.</Link></Text>
+                        <Text size="2" style={{margin: '6px 0'}} className={'text-center'}>Don&apos;t have an account
+                            ? <Link
+                                href={"/sign_up"}
+                                className={'font-semibold text-violet-700 cursor-pointer'}>Sign up.</Link></Text>
                     </div>
                 </div>
             </div>

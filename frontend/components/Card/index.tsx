@@ -13,7 +13,6 @@ const CardComponent = ({longUrl, date, _id, shortUrl}: CardComponentType) => {
 
     const {data} = useFetchPreview(longUrl);
     const copyToClipboard = () => {
-        console.log("HELLO WORLD;;;;;;")
         const copyText: any = window.document.getElementById("myInput");
         copyText?.select();
         copyText?.setSelectionRange(0, 99999);
