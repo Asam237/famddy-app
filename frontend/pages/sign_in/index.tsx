@@ -50,13 +50,12 @@ const Signin = () => {
                         <div style={{margin: '10px 0'}}/>
                         <form onSubmit={handleSubmit(handleLogin)}>
                             <TextField.Root size="3">
-                                <TextField.Input {...register("email", {minLength: 6, maxLength: 20, required: true})}
+                                <TextField.Input {...register("email", {minLength: 6, required: true})}
                                                  placeholder="Email"/>
                             </TextField.Root>
                             <TextField.Root size="3" style={{marginTop: '14px'}}>
                                 <TextField.Input type={"password"} {...register("password", {
                                     minLength: 6,
-                                    maxLength: 20,
                                     required: true
                                 })}
                                                  placeholder="Mot de passe"/>

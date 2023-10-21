@@ -50,13 +50,13 @@ const Create = () => {
                         <div style={{margin: '10px 0'}}/>
                         <form onSubmit={handleSubmit(handleRegister)}>
                             <TextField.Root size="3">
-                                <TextField.Input {...register("full_name", {minLength: 4, maxLength: 20, required: true})} placeholder="Full Name"/>
+                                <TextField.Input {...register("full_name", {minLength: 4, required: true})} placeholder="Full Name"/>
                             </TextField.Root>
                             <TextField.Root size="3" style={{marginTop: '14px'}}>
-                                <TextField.Input {...register("email", {minLength: 6, maxLength: 20, required: true})} placeholder="Email"/>
+                                <TextField.Input {...register("email", {minLength: 6, required: true})} placeholder="Email"/>
                             </TextField.Root>
                             <TextField.Root size="3" style={{marginTop: '14px'}}>
-                                <TextField.Input {...register("password", {minLength: 6, maxLength: 20, required: true})} type={"password"}
+                                <TextField.Input {...register("password", {minLength: 6, required: true})} type={"password"}
                                                  placeholder="Password"/>
                             </TextField.Root>
                             {
