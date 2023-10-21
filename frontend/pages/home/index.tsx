@@ -46,9 +46,8 @@ const Home = () => {
                             <TextField.Slot>
                                 <FaLink/>
                             </TextField.Slot>
-                            <TextField.Input pattern="https?://.*" {...register("longUrl")} placeholder="Enter link here..."/>
+                            <TextField.Input pattern="https?://.*" {...register("longUrl")} placeholder="Enter link here..." required title="Please enter a link starting with http or https"/>
                         </TextField.Root>
-                        {errors.longUrl && <span>This field is required</span>}
                         <button type="submit"
                                 className={'bg-violet-700 rounded-md text-center text-white px-4 py-2'}>Shorten
                             URL
