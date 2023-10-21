@@ -33,7 +33,7 @@ const HeaderDashboard = () => {
                             <div className={`${location === "/home" ? 'hidden lg:flex' : 'hidden'}`}>
                                 <Link href={"/dashboard"}>
                                     <button
-                                        className={'bg-violet-700 rounded-md text-center text-white px-4 py-2'}>Dashboard
+                                        className={'bg-violet-700 rounded-md text-center text-white px-4 py-2'}>Space for links
                                     </button>
                                 </Link>
                             </div>
