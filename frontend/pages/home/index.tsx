@@ -42,13 +42,13 @@ const Home = () => {
                     <form
                         className={'pt-7 max-w-3xl mx-auto w-full flex space-y-4 xl:space-y-0 xl:space-x-4 flex-col xl:flex-row justify-center items-center'}
                         onSubmit={handleSubmit(handlerShortener)}>
-                        <TextField.Root size="3" className={'w-full xl:w-3/4'}>
+                        <TextField.Root size="3" className={'w-full xl:w-3/4'} >
                             <TextField.Slot>
                                 <FaLink/>
                             </TextField.Slot>
-                            <TextField.Input {...register("longUrl")}
-                                             placeholder="Enter link here..."/>
+                            <TextField.Input pattern="https?://.*" {...register("longUrl")} placeholder="Enter link here..."/>
                         </TextField.Root>
+                        {errors.longUrl && <span>This field is required</span>}
                         <button type="submit"
                                 className={'bg-violet-700 rounded-md text-center text-white px-4 py-2'}>Shorten
                             URL
