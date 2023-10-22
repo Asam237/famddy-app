@@ -1,6 +1,8 @@
 import {api} from "../../useAxios";
 import {useMutation, useQueryClient} from "@tanstack/react-query";
 import {EditShortenerInput} from "../../../components/EditShortener";
+import {queries} from "../../../utils/consts";
+import {toast} from "react-toastify";
 
 
 const editShortener = async (id: string, longUrl: string) => {
@@ -16,7 +18,8 @@ export const useEditShortener = (id: string) => {
             await editShortener(id, input.longUrl);
         },
         onSuccess: () => {
-            queryClient.invalidateQueries(["shortenerUser"])
+            queryClient.invalidateQueries([queries.shortenerOfUser])
+            toast.success("Link changed with success");
         }
     })
 }
