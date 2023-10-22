@@ -21,7 +21,7 @@ const RemoveDialog = ({id, title}: RemoveDialogInput) => {
     return (
         <AlertDialog.Root>
             <AlertDialog.Trigger>
-                <FaTrash className={'text-red-500'}/>
+                <FaTrash className={'text-red-500 cursor-pointer'}/>
             </AlertDialog.Trigger>
             <AlertDialog.Content style={{maxWidth: 450}}>
                 <AlertDialog.Title>{cleanText(title, 30)}</AlertDialog.Title>

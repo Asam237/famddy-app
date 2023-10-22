@@ -9,6 +9,7 @@ import {toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {useDeleteShortener} from "../../hooks/requests/mutations/useDeleteShortener";
 import RemoveDialog from "../RemoveShortenenr";
+import EditShortener from "../EditShortener";
 
 
 const CardComponent = ({longUrl, date, _id, shortUrl}: CardComponentType) => {
@@ -78,7 +79,7 @@ const CardComponent = ({longUrl, date, _id, shortUrl}: CardComponentType) => {
                         </div>
                     </div>
                     <div className={'mt-4 lg:mt-0'}>
-                        <div className={'flex items-center space-x-2'}>
+                        <div className={'flex items-center space-x-3'}>
                             <div
                                 onClick={() => copyToClipboard()}
                                 className={"flex items-center border rounded-md w-20 justify-center px-3 bg-gray-200 py-2 cursor-pointer"}>
@@ -86,6 +87,7 @@ const CardComponent = ({longUrl, date, _id, shortUrl}: CardComponentType) => {
                                 <p className={"text-sm font-medium ml-1"}>Copy</p>
                             </div>
                             <RemoveDialog title={longUrl} id={_id}/>
+                            <EditShortener id={_id} longUrl={longUrl}/>
                         </div>
                     </div>
                 </div>

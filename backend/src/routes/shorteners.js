@@ -70,11 +70,11 @@ router.delete("/:id", (req, res) => {
 
 router.patch("/:id", (req, res) => {
     const shortenerId = req.params.id;
-    const longUrl = req.body;
+    const {longUrl} = req.body;
     Shortener.findOne({_id: shortenerId}).then(async (shortener) => {
         if (shortener == null)
             return res.status(400).send(Consts.standardErrorResponse(ErrorCodes.INVALID_PARAMS));
-        shortener.longUrl = longUrl ?? shortener.longUrl;
+        shortener.longUrl = longUrl;
         await shortener.save();
         let r = Consts.newResponse();
         r.shortener = shortener;
