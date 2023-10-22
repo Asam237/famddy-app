@@ -46,7 +46,8 @@ const Dashboard = () => {
                         {
                             data?.shorteners.map((item: CardComponentType) => {
                                 return (
-                                    <CardComponent key={item._id} longUrl={item.longUrl} updated_at={item.updated_at}
+                                    <CardComponent key={item._id} _id={item._id} longUrl={item.longUrl}
+                                                   updated_at={item.updated_at}
                                                    shortUrl={item.shortUrl}/>)
                             })
                         }

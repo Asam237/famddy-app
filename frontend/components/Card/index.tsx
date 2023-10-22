@@ -7,11 +7,20 @@ import {CardComponentType} from "../../typings";
 import Link from "next/link";
 import {toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import {useDeleteShortener} from "../../hooks/requests/mutations/useDeleteShortener";
+import RemoveDialog from "../RemoveShortenenr";
 
 
 const CardComponent = ({longUrl, date, _id, shortUrl}: CardComponentType) => {
 
     const {data} = useFetchPreview(longUrl);
+    const deleteShortener = useDeleteShortener();
+
+    const handlerDeleteShortener = () => {
+        deleteShortener.mutate(_id);
+        toast.success("Delete with success !!!");
+    }
+
     const copyToClipboard = () => {
         const copyText: any = window.document.getElementById("myInput");
         copyText?.select();
@@ -29,7 +38,7 @@ const CardComponent = ({longUrl, date, _id, shortUrl}: CardComponentType) => {
     }
 
     return (
-        <Card key={_id} asChild className={"w-full"}>
+        <Card asChild className={"w-full"}>
             <div>
                 <div className={"flex flex-col lg:flex-row lg:justify-between p-4"}>
                     <div className={'flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-4'}>
@@ -76,6 +85,7 @@ const CardComponent = ({longUrl, date, _id, shortUrl}: CardComponentType) => {
                                 <FaCopy color={"gray"} size={14}/>
                                 <p className={"text-sm font-medium ml-1"}>Copy</p>
                             </div>
+                            <RemoveDialog title={longUrl} id={_id}/>
                         </div>
                     </div>
                 </div>
