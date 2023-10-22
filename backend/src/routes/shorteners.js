@@ -58,12 +58,26 @@ router.get("/of/:user", (req, res) => {
 });
 
 router.delete("/:id", (req, res) => {
-    let shortenerId = req.params.id;
+    const shortenerId = req.params.id;
     Shortener.deleteOne({_id: shortenerId}).then((shortener) => {
         if (shortener == null)
             return res.status(400).send(Consts.standardErrorResponse(ErrorCodes.INVALID_PARAMS));
         let r = Consts.newResponse();
         r.message = "Deteled with success !";
+        return res.status(200).send(r);
+    }, (err) => Consts.errorFallback(err, res))
+});
+
+router.patch("/:id", (req, res) => {
+    const shortenerId = req.params.id;
+    const longUrl = req.body;
+    Shortener.findOne({_id: shortenerId}).then(async (shortener) => {
+        if (shortener == null)
+            return res.status(400).send(Consts.standardErrorResponse(ErrorCodes.INVALID_PARAMS));
+        shortener.longUrl = longUrl ?? shortener.longUrl;
+        await shortener.save();
+        let r = Consts.newResponse();
+        r.shortener = shortener;
         return res.status(200).send(r);
     }, (err) => Consts.errorFallback(err, res))
 });
