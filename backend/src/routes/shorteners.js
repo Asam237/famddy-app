@@ -57,4 +57,15 @@ router.get("/of/:user", (req, res) => {
     }, (err) => Consts.errorFallback(err, res));
 });
 
+router.delete("/:id", (req, res) => {
+    let shortenerId = req.params.id;
+    Shortener.deleteOne({_id: shortenerId}).then((shortener) => {
+        if (shortener == null)
+            return res.status(400).send(Consts.standardErrorResponse(ErrorCodes.INVALID_PARAMS));
+        let r = Consts.newResponse();
+        r.message = "Deteled with success !";
+        return res.status(200).send(r);
+    }, (err) => Consts.errorFallback(err, res))
+});
+
 module.exports = router;
