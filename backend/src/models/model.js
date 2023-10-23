@@ -13,20 +13,6 @@ const sortByCreatedAt = function (next) {
 };
 
 module.exports = {
-    /**
-     * @swagger
-     * components:
-     *     schemas:
-     *         Model:
-     *             type: object
-     *             properties:
-     *                 created_at:
-     *                     type: number
-     *                 updated_at:
-     *                     type: number
-     *                 deleted_at:
-     *                     type: number
-     */
     base: {
         created_at: {type: Number, default: Date.now()},
         updated_at: {type: Number, default: Date.now()},
