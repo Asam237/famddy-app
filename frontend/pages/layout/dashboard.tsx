@@ -43,7 +43,7 @@ const DashboardLayout = ({children}: any) => {
                             {
                                 links.map((item, index) => {
                                     return (
-                                        <Link key={index} href={item.path}>{item.icon}</Link>
+                                        <Link key={index} href={item.path} aria-label="social">{item.icon}</Link>
                                     );
                                 })
                             }

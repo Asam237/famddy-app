@@ -42,11 +42,13 @@ const Home = () => {
                     <form
                         className={'pt-7 max-w-3xl mx-auto w-full flex space-y-4 xl:space-y-0 xl:space-x-4 flex-col xl:flex-row justify-center items-center'}
                         onSubmit={handleSubmit(handlerShortener)}>
-                        <TextField.Root size="3" className={'w-full xl:w-3/4'} >
+                        <TextField.Root size="3" className={'w-full xl:w-3/4'}>
                             <TextField.Slot>
                                 <FaLink/>
                             </TextField.Slot>
-                            <TextField.Input pattern="https?://.*" {...register("longUrl")} placeholder="Enter link here..." required title="Enter a link starting with http or https"/>
+                            <TextField.Input pattern="https?://.*" {...register("longUrl")}
+                                             placeholder="Enter link here..." required
+                                             title="Enter a link starting with http or https"/>
                         </TextField.Root>
                         <button type="submit"
                                 className={'bg-violet-700 rounded-md text-center text-white px-4 py-2'}>Shorten
@@ -100,10 +102,10 @@ const Home = () => {
                     <div className="container mx-auto">
                         <div className="grid gap-y-4 xl:gap-y-0 xl:gap-x-4 grid-cols-1 xl:grid-cols-2 xl:h-72">
                             <div>
-                                <h4 className={'text-center xl:text-start text-xl xl:text-2xl font-bold text-gray-700'}>A
+                                <p className={'text-center xl:text-start text-xl xl:text-2xl font-bold text-gray-700'}>A
                                     fast and
                                     URL shortener that is quick and easy
-                                </h4>
+                                </p>
                                 <p className={'text-center xl:text-start pt-6 text-base leading-8 text-gray-700'}>
                                     A free URL shortener that can transform long and ugly links into nice, memorable,
                                     and trackable short URLs.
