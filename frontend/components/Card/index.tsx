@@ -10,7 +10,6 @@ import "react-toastify/dist/ReactToastify.css";
 import {useDeleteShortener} from "../../hooks/requests/mutations/useDeleteShortener";
 import RemoveDialog from "../RemoveShortenenr";
 import EditShortener from "../EditShortener";
-import Image from "next/image";
 
 
 const CardComponent = ({longUrl, date, _id, shortUrl}: CardComponentType) => {
@@ -44,7 +43,7 @@ const CardComponent = ({longUrl, date, _id, shortUrl}: CardComponentType) => {
             <div>
                 <div className={"flex flex-col lg:flex-row lg:justify-between p-4"}>
                     <div className={'flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-4'}>
-                        <Image
+                        <img
                             className="h-40 w-40 object-cover rounded-xl"
                             src={data?.image}
                             alt={data?.title}
