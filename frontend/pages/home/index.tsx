@@ -3,16 +3,15 @@ import {SubmitHandler, useForm} from "react-hook-form";
 import {ShortenerInput} from "../../typings";
 import AppLayout from "../layout/app";
 import {TextField} from "@radix-ui/themes";
-import {FaArrowRight, FaChrome, FaCopy, FaLink, FaSave} from "react-icons/fa";
+import {FaArrowRight} from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";
 import {UrlPic} from "../../utils/images";
 import {toast, ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {cleanText} from "../../utils/helpers";
 import {useAuth} from "../../hooks/useAuth";
 import 'react-loading-skeleton/dist/skeleton.css';
-import Skeleton from "react-loading-skeleton";
+import ShortLink from "../../components/ShortLink";
 
 const Home = () => {
     const {data, mutate: createShortener, isLoading} = useShortener();
@@ -39,64 +38,7 @@ const Home = () => {
                         <p className={'text-center py-2 text-base text-gray-700'}>Famddy is a free URL shortening tool.
                             Create short and memorable links in seconds.</p>
                     </div>
-                    <form
-                        className={'pt-7 max-w-3xl mx-auto w-full flex space-y-4 xl:space-y-0 xl:space-x-4 flex-col xl:flex-row justify-center items-center'}
-                        onSubmit={handleSubmit(handlerShortener)}>
-                        <TextField.Root size="3" className={'w-full xl:w-3/4'}>
-                            <TextField.Slot>
-                                <FaLink/>
-                            </TextField.Slot>
-                            <TextField.Input pattern="https?://.*" {...register("longUrl")}
-                                             placeholder="Enter link here..." required
-                                             title="Enter a link starting with http or https"/>
-                        </TextField.Root>
-                        <button type="submit"
-                                className={'bg-violet-700 rounded-md text-center text-white px-4 py-2'}>Shorten
-                            URL
-                        </button>
-                    </form>
-                    {
-                        isLoading &&
-                        <div className={'container mx-auto xl:max-w-4xl mt-8'}>
-                            <Skeleton className="mb-2 h-10 w-10 mx-auto bg-slate-200 dark:bg-slate-800"/>
-                        </div>
-                    }
-                    {data?.shortener?.shortUrl.length > 5 &&
-                        <div className={'container mx-auto xl:max-w-4xl'}>
-                            <div
-                                className={"flex justify-center items-center px-4 py-6 my-4 rounded-md xl:my-8 bg-violet-100 flex-col"}>
-                                <input
-                                    className={`text-gray-700 text-sm font-semibold flex items-center`}
-                                    value={cleanText(data?.shortener?.shortUrl, 20)}
-                                    placeholder={cleanText(data?.shortener?.shortUrl, 10)}
-                                    disabled
-                                />
-                                <input
-                                    className={`text-gray-700 text-sm font-semibold items-center hidden`}
-                                    id="myInput"
-                                    value={data?.shortener?.shortUrl}
-                                    placeholder={data?.shortener?.shortUrl}
-                                    disabled
-                                />
-                                <div className={'mt-4 flex flex-row justify-center items-center space-x-5'}>
-                                    <FaCopy
-                                        size={24}
-                                        onClick={() => copyToClipboard()}
-                                        className={'cursor-pointer text-gray-700 hover:text-violet-700'}/>
-                                    <Link href={data?.shortener?.shortUrl}>
-                                        <FaChrome size={24}
-                                                  className={'cursor-pointer text-gray-700 hover:text-violet-700'}/>
-                                    </Link>
-                                    <Link href={"/sign_in"}>
-                                        <FaSave size={24}
-                                                className={'cursor-pointer text-gray-700 hover:text-violet-700'}/>
-                                    </Link>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                    <p className={'text-center pt-6 text-sm text-gray-700'}>By clicking Shorten URL, you agree to
-                        Famddy&apos;s Terms of Use, Privacy Policy and Cookie Policy</p>
+                    <ShortLink/>
                 </div>
                 <div className={'pt-10 xl:pt-20'}>
                     <div className="container mx-auto">
@@ -199,7 +141,6 @@ const Home = () => {
             <ToastContainer/>
         </AppLayout>
     );
-
 }
 
 export default Home;
