@@ -28,6 +28,7 @@ const DashboardLayout = ({children}: any) => {
             <Head>
                 <title>Free URL Shortener</title>
                 <meta name="description" content="application for shortening URLs and storing useful links."/>
+                <meta httpEquiv="Cache-control" content="no-cache" />
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
                 <link rel="icon" href="/favicon.ico"/>
             </Head>

@@ -28,6 +28,7 @@ const AppLayout = ({children}: any) => {
                 <title>Free URL Shortener</title>
                 <meta name="description" content="application for shortening URLs and storing useful links."/>
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                <meta httpEquiv="Cache-control" content="no-cache" />
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
             <Header/>
@@ -35,7 +36,7 @@ const AppLayout = ({children}: any) => {
             <footer className={'border-t'}>
                 <div className="container mx-auto py-4">
                     <div
-                        className="flex items-center flex-col xl:flex-row space-y-4 xl:space-y-0 flex-col-reverse xl:justify-between">
+                        className="flex items-center xl:flex-row space-y-4 xl:space-y-0 flex-col-reverse xl:justify-between">
                         <p className={'text-center py-2 text-base text-gray-500'}>© {new Date().getFullYear()} Famddy.
                             All rights reserved.</p>
                         <div className={'flex space-x-5'}>
