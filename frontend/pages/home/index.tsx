@@ -56,7 +56,11 @@ const Home = () => {
                                     Instagram, WhatsApp, emails, SMS, videos. </p>
                             </div>
                             <div className={'h-full bg-violet-200 rounded-lg flex justify-end items-center'}>
-                                <Image loading="lazy" className={'h-full object-cover w-auto'} src={UrlPic} alt="pic"/>
+                                <Image className={'object-cover'} src={UrlPic} alt="pic"
+                                       width={700}
+                                       height={550}
+                                       loading="eager"
+                                />
                             </div>
                         </div>
                     </div>
