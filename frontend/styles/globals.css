@@ -5,9 +5,11 @@
 @font-face {
     src: url("../assets/fonts/WorkSans-VariableFont_wght.ttf");
     font-family: 'WorkSans';
+    font-display: swap;
 }
 
 
 * {
     font-family: 'WorkSans';
+    font-display: swap;
 }

@@ -56,7 +56,7 @@ const Home = () => {
                                     Instagram, WhatsApp, emails, SMS, videos. </p>
                             </div>
                             <div className={'h-full bg-violet-200 rounded-lg flex justify-end items-center'}>
-                                <Image className={'h-full object-cover w-auto'} src={UrlPic} alt="pic"/>
+                                <Image loading="lazy" className={'h-full object-cover w-auto'} src={UrlPic} alt="pic"/>
                             </div>
                         </div>
                     </div>
@@ -64,9 +64,9 @@ const Home = () => {
                 <div className={'pt-10 xl:pt-28'}>
                     <div className="container mx-auto">
                         <div className="flex justify-center items-center flex-col">
-                            <h4 className={'text-3xl xl:text-4xl font-bold text-gray-700 flex justify-center items-center text-center'}>
+                            <h1 className={'text-3xl xl:text-4xl font-bold text-gray-700 flex justify-center items-center text-center'}>
                                 What are the opinions of Famddy customers?
-                            </h4>
+                            </h1>
                             <div className={"bg-violet-200 p-10 rounded-xl mt-6 xl:mt-10 text-center xl:text-start"}>
                                 <blockquote className="text-xl font-semibold text-gray-900">
                                     <svg className="w-8 h-8 text-gray-400 dark:text-gray-600 mb-4 hidden xl:flex"
@@ -90,10 +90,10 @@ const Home = () => {
                 <div className={`pt-10 xl:pt-28 ${!uid ? 'flex' : 'hidden'}`}>
                     <div className="container mx-auto">
                         <div className="flex justify-center items-center flex-col">
-                            <h4 className={'text-3xl xl:text-4xl font-bold text-gray-700 flex justify-center items-center text-center'}>
+                            <h2 className={'text-3xl xl:text-4xl font-bold text-gray-700 flex justify-center items-center text-center'}>
                                 Get Started now <FaArrowRight size={22}
                                                               className={'text-gray-700 ml-2 hidden xl:flex'}/>
-                            </h4>
+                            </h2>
                             <p className={'text-center py-2 text-base text-gray-700'}>
                                 Try Famddy out and observe for yourself
                             </p>
@@ -118,8 +118,8 @@ const Home = () => {
                     <div className="container mx-auto border-t border-b py-8">
                         <div className="flex flex-col xl:flex-row xl:justify-between xl:items-center items-center">
                             <div>
-                                <h4 className={"text-sm font-semibold text-center xl:text-start"}>Subscribe to our
-                                    newsletter</h4>
+                                <h3 className={"text-sm font-semibold text-center xl:text-start"}>Subscribe to our
+                                    newsletter</h3>
                                 <p className={"text-sm font-medium text-gray-600 pt-2 text-center xl:text-start"}>The
                                     latest news, articles, and
                                     resources, sent to your inbox weekly.</p>
