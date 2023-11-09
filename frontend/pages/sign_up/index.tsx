@@ -28,7 +28,7 @@ const Create = () => {
     return (
         <div className={"bg-gray-100 h-screen"}>
             <Head>
-                <title>Sign Up | Famddy</title>
+                <title>Sign Up | Famdy</title>
                 <meta name="description" content=""/>
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
                 <link rel="icon" href="/favicon.ico"/>
