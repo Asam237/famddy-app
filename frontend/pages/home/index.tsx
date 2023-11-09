@@ -69,7 +69,7 @@ const Home = () => {
                     <div className="container mx-auto">
                         <div className="flex justify-center items-center flex-col">
                             <h1 className={'text-3xl xl:text-4xl font-bold text-gray-700 flex justify-center items-center text-center'}>
-                                What are the opinions of Famddy customers?
+                                What are the opinions of Famdy customers?
                             </h1>
                             <div className={"bg-violet-200 p-10 rounded-xl mt-6 xl:mt-10 text-center xl:text-start"}>
                                 <blockquote className="text-xl font-semibold text-gray-900">
