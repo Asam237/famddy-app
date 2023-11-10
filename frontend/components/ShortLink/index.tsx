@@ -148,7 +148,7 @@ const ShortLink = () => {
                 </div>
             }
             <p className={'text-center pt-6 text-sm text-gray-700'}>By clicking Shorten URL, you agree to
-                Famddy&apos;s Terms of Use, Privacy Policy and Cookie Policy</p>
+                Famdy&apos;s Terms of Use, Privacy Policy and Cookie Policy</p>
         </>
     )
 }
