@@ -3,7 +3,6 @@ const router = express.Router();
 const Consts = require("../config/consts");
 const ErrorCodes = require("../config/error_codes");
 const User = require("../models/user");
-const Security = require("../services/security");
 
 /**
  * @swagger
@@ -81,7 +80,7 @@ router.post("/login", function (req, res) {
  *             200:
  *                 description: Le retour standard
  */
-router.post("/logout", Security.authentication, function (req, res) {
+router.post("/logout", function (req, res) {
   User.findById(req._id).then(async function (user) {
     user.auth_token = undefined;
     await user.save();
