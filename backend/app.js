@@ -21,7 +21,6 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
 const {MONGODB_URL} = require('./src/config/consts');
-const shortenerRouter = require("./src/routes/shorteners");
 mongoose.connect(MONGODB_URL).then(function () {
     const usersRouter = require("./src/routes/users");
     const shortenerRouter = require("./src/routes/shorteners");
