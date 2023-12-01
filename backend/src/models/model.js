@@ -33,7 +33,6 @@ module.exports = {
             .pre('updateOne', removeDeletedAt)
             .pre('find', removeDeletedAt)
             .pre('findOne', removeDeletedAt)
-            .pre('find', sortByCreatedAt)
-            .pre('aggregate', sortByCreatedAt);
+            .pre('find', sortByCreatedAt);
     }
 };
