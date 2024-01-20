@@ -1,1 +1,1 @@
-This project presents itself as a faithful reproduction of the Trello application, an online project management tool.
+It's a link shortening and bookmarking application designed to create concise links and save them for easy access and sharing.
